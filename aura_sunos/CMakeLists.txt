@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(aura_freebsd CXX)
+project(aura_sunos CXX)
 
 
 list(APPEND library_source
@@ -28,13 +28,10 @@ list(APPEND library_references
    aqua
    aura
    acme_posix
-   acme_darwin
-   acme_freebsd
+   acme_sunos
    apex_posix
-   apex_darwin
-   apex_freebsd
+   apex_sunos
    aura_posix
-   aura_darwin
    )
 
 
@@ -64,12 +61,12 @@ if (MSVC)
     target_link_options(aura_freebsd PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(aura_freebsd PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura_freebsd.lib")
     target_link_options(aura_freebsd PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura_freebsd.def")
-    target_link_libraries(aura_freebsd PRIVATE acme apex aqua aura Gdiplus)
-elseif(${FREEBSD})
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus)
+elseif(${__SUNOS__})
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
-       target_compile_options(aura_freebsd PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(aura_freebsd PRIVATE ${PKGCONFIG_LDFLAGS})
+       target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
@@ -112,6 +109,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(aura_freebsd PRIVATE _aura_freebsd_project)
-target_compile_definitions(aura_freebsd PRIVATE UNICODE)
-target_compile_definitions(aura_freebsd PRIVATE _UNICODE)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)

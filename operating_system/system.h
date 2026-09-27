@@ -269,6 +269,7 @@ typedef wd32char        widechar;
 #endif
 
 
+
 //#define DWORD     uint32_t
 
 //#define BYTE      uint8_t
@@ -296,12 +297,12 @@ typedef void * PVOID;
 //#define _gmtime64 gmtime
 
 
-//#define stricmp strcasecmp
-//#define strnicmp strncasecmp
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
 
 
-//#define _stricmp  stricmp
-//#define _strnicmp  strnicmp
+#define _stricmp  stricmp
+#define _strnicmp  strnicmp
 
 
 

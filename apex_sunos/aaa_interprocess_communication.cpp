@@ -8,7 +8,7 @@
 #include <sys/msg.h>
 
 
-namespace apex_freebsd
+namespace apex_sunos
 {
 
 
@@ -571,7 +571,7 @@ namespace apex_freebsd
 //      }
 
 
-} // namespace apex_freebsd
+} // namespace apex_sunos
 
 
 

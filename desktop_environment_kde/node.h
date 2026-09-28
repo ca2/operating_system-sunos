@@ -17,7 +17,7 @@ namespace desktop_environment_kde
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::aura::freebsd::node,
+      virtual public ::aura::sunos::node,
       virtual public ::node_kde::node
    {
    public:
@@ -65,11 +65,11 @@ namespace desktop_environment_kde
 
       //virtual void node_post_quit() override;
 
-      //virtual ::freebsd::appindicator * appindicator_allocate() override;
+      //virtual ::sunos::appindicator * appindicator_allocate() override;
 
-      //::extended::transport < ::freebsd::appindicator > new_appindicator();
+      //::extended::transport < ::sunos::appindicator > new_appindicator();
 
-      //virtual void appindicator_destroy(::freebsd::appindicator * pappindicator) override;
+      //virtual void appindicator_destroy(::sunos::appindicator * pappindicator) override;
 
       //virtual void enum_display_monitors(::aura::session * psession) override;
 

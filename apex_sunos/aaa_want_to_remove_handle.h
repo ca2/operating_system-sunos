@@ -12,7 +12,7 @@
 // CHandleMap
 //
 //  Note: Do not access the members of this class directly.
-//      Use ::freebsd::window::from_handle, ::freebsd::graphics::from_handle, etc.
+//      Use ::sunos::window::from_handle, ::sunos::graphics::from_handle, etc.
 //      The actual definition is only included because it is
 //      necessary for the definition of WindowsThread.
 //
@@ -75,7 +75,7 @@ inline ::u32 HashKey < HIMAGELIST >(HIMAGELIST key)
 }
 
 
-namespace freebsd
+namespace sunos
 {
 
    class window;
@@ -119,7 +119,7 @@ namespace freebsd
    typedef handle1 < HGDIOBJ > hgdiobj_handle;
    typedef handle1 < HIMAGELIST > himagelist_handle;
 
-} // namespace freebsd
+} // namespace sunos
 
 
 template<class TYPE>
@@ -185,27 +185,27 @@ public:
 };
 
 class CLASS_DECL_APEX oswindow_map :
-   public handle_map < ::freebsd::oswindow_handle, ::freebsd::window >
+   public handle_map < ::sunos::oswindow_handle, ::sunos::window >
 {
 public:
-   oswindow_map(::object * pobject) : handle_map < ::freebsd::oswindow_handle, ::freebsd::window >(pobject) {}
+   oswindow_map(::object * pobject) : handle_map < ::sunos::oswindow_handle, ::sunos::window >(pobject) {}
 };
 
 /*class CLASS_DECL_APEX hdc_map :
-   public handle_map < ::freebsd::hdc_handle, ::freebsd::graphics >
+   public handle_map < ::sunos::hdc_handle, ::sunos::graphics >
 {
 public:
 };*/
 
 /*class hgdiobj_map :
-   public handle_map < ::freebsd::hgdiobj_handle, ::freebsd::object >
+   public handle_map < ::sunos::hgdiobj_handle, ::sunos::object >
 {
 public:
 };*/
 
 /*
 class CLASS_DECL_APEX hdc_map :
-   public handle_map < ::freebsd::hmenu_handle, ::freebsd::menu >
+   public handle_map < ::sunos::hmenu_handle, ::sunos::menu >
 {
 public:
 };

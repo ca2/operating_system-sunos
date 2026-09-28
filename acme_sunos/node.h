@@ -10,11 +10,11 @@
 #include "acme_darwin/node.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
 
-   class CLASS_DECL_ACME_FREEBSD node :
+   class CLASS_DECL_ACME_SUNOS node :
       virtual public ::acme_darwin::node
    {
    public:
@@ -72,7 +72,7 @@ namespace acme_freebsd
    };
 
 
-} // namespace acme_freebsd
+} // namespace acme_sunos
 
 
 

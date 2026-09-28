@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace apex_freebsd
+namespace apex_sunos
 {
 
 
-   class CLASS_DECL_APEX_FREEBSD shell_launcher :
+   class CLASS_DECL_APEX_SUNOS shell_launcher :
       virtual public ::apex::shell_launcher
    {
    public:
@@ -39,7 +39,7 @@ namespace apex_freebsd
    };
 
 
-} // namespace apex_freebsd
+} // namespace apex_sunos
 
 
 

@@ -12,12 +12,12 @@ namespace aura
 {
 
 
-   namespace freebsd
+   namespace sunos
    {
 
 
-      class CLASS_DECL_AURA_FREEBSD node :
-         virtual public ::apex::freebsd::node,
+      class CLASS_DECL_AURA_SUNOS node :
+         virtual public ::apex::sunos::node,
          virtual public ::aura::posix::node
       {
       public:
@@ -60,7 +60,7 @@ namespace aura
       };
 
 
-   } // namespace freebsd
+   } // namespace sunos
 
 
 } // namespace aura

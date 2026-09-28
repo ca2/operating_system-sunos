@@ -5,11 +5,11 @@
 #include "acme_darwin/acme_directory.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
 
-   class CLASS_DECL_ACME_FREEBSD acme_directory :
+   class CLASS_DECL_ACME_SUNOS acme_directory :
       virtual public ::acme_darwin::acme_directory
    {
    public:
@@ -76,7 +76,7 @@ namespace acme_freebsd
    };
 
 
-} // namespace acme_freebsd
+} // namespace acme_sunos
 
 
 

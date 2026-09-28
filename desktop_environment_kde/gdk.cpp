@@ -508,7 +508,7 @@ bool bOk = true;
 
 
 
-//#ifdef FREEBSD
+//#ifdef __SUNOS__
 //static void
 //log_handler (const gchar   *log_domain,
 //             GLogLevelFlags log_level,

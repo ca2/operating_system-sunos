@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace freebsd
+namespace sunos
 {
 
 
@@ -25,7 +25,7 @@ namespace freebsd
          virtual ~document_properties();
 
 
-         virtual bool initialize(::freebsd::printer * pprinter, DEVMODE * pdevmode = nullptr);
+         virtual bool initialize(::sunos::printer * pprinter, DEVMODE * pdevmode = nullptr);
          virtual bool close();
          virtual ::draw2d::graphics * create_graphics();
 

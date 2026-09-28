@@ -4,11 +4,11 @@
 #include "acme_posix/dir_context.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
 
-   class CLASS_DECL_ACME_FREEBSD dir_context :
+   class CLASS_DECL_ACME_SUNOS dir_context :
       virtual public ::acme_posix::dir_context
    {
    public:
@@ -32,7 +32,7 @@ namespace acme_freebsd
    };
 
 
-} // namespace acme_freebsd
+} // namespace acme_sunos
 
 
 

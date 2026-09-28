@@ -27,16 +27,16 @@
 #define HAS_FREEDESKTOP
 
 
-//#ifndef FREEBSD
-//#define FREEBSD
+//#ifndef __SUNOS__
+//#define __SUNOS__
 //#endif
 
-//#ifndef _FREEBSD
-//#define _FREEBSD
+//#ifndef _SUNOS
+//#define _SUNOS
 //#endif
 
-//#ifndef FREEBSD
-//#define FREEBSD
+//#ifndef __SUNOS__
+//#define __SUNOS__
 //#endif
 
 //#ifdef RASPBIAN
@@ -55,13 +55,13 @@
 
 using errno_t = int;
 
-#define OPERATING_SYSTEM_NAMESPACE freebsd
+#define OPERATING_SYSTEM_NAMESPACE sunos
 
 #define PLATFORM_COMMON_NAMESPACE posix
 
 #define PLATFORM_FAMILY_NAMESPACE darwin
 
-#define PLATFORM_STRING "freebsd"
+#define PLATFORM_STRING "sunos"
 
 #define PLATFORM_COMMON_STRING "posix"
 
@@ -69,14 +69,14 @@ using errno_t = int;
 
 #define DEFAULT_DIR_SEPARATOR "/"
 
-#define OPERATING_SYSTEM_NAME "freebsd"
+#define OPERATING_SYSTEM_NAME "sunos"
 
-#define OPERATING_SYSTEM_NAMESPACE freebsd
+#define OPERATING_SYSTEM_NAMESPACE sunos
 
 
 
-#ifndef __freebsd__
-#define __freebsd__
+#ifndef __sunos__
+#define __sunos__
 #endif
 
 #define _OPENGL 1

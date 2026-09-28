@@ -4,11 +4,11 @@
 #include "acme_darwin/file_context.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
 
-   class CLASS_DECL_ACME_FREEBSD file_context :
+   class CLASS_DECL_ACME_SUNOS file_context :
       virtual public ::acme_darwin::file_context
    {
    public:
@@ -31,7 +31,7 @@ namespace acme_freebsd
    };
 
 
-} // namespace acme_freebsd
+} // namespace acme_sunos
 
 
 

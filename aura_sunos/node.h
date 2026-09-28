@@ -8,16 +8,16 @@
 #pragma once
 
 
-#include "apex_freebsd/node.h"
+#include "apex_sunos/node.h"
 #include "aura_posix/node.h"
 
 
-namespace aura_freebsd
+namespace aura_sunos
 {
 
 
-   class CLASS_DECL_AURA_FREEBSD node :
-           virtual public ::apex_freebsd::node,
+   class CLASS_DECL_AURA_SUNOS node :
+           virtual public ::apex_sunos::node,
            virtual public ::aura_posix::node
    {
    public:
@@ -60,7 +60,7 @@ namespace aura_freebsd
    };
 
 
-} // namespace aura_freebsd
+} // namespace aura_sunos
 
 
 

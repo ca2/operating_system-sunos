@@ -1,14 +1,14 @@
 #pragma once
 
 
-#define index freebsd_bsd_index
+#define index sunos_bsd_index
 
-//#ifndef FREEBSD
-//#define FREEBSD 1
+//#ifndef __SUNOS__
+//#define __SUNOS__ 1
 //#endif
 
-//#ifndef _FREEBSD
-//#define _FREEBSD 1
+//#ifndef _SUNOS
+//#define _SUNOS 1
 //#endif
 
 //#include <strings.h>

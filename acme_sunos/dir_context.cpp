@@ -3,7 +3,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
 
@@ -59,7 +59,7 @@ namespace acme_freebsd
    }
 
 
-} // namespace acme_freebsd
+} // namespace acme_sunos
 
 
 

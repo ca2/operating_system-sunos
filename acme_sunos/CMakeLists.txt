@@ -99,7 +99,7 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _acme_freebsd_project)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _acme_sunos_project)
 target_compile_definitions(${PROJECT_NAME} PRIVATE UNICODE)
 target_compile_definitions(${PROJECT_NAME} PRIVATE _UNICODE)
 

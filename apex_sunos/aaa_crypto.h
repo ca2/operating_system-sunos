@@ -1,11 +1,11 @@
 #pragma once
 
 //
-//namespace freebsd
+//namespace sunos
 //{
 //
 //
-//   class CLASS_DECL_APEX_FREEBSD crypto :
+//   class CLASS_DECL_APEX_SUNOS crypto :
 //      virtual public ::crypto::crypto
 //   {
 //   public:

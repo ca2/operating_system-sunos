@@ -8,7 +8,7 @@
 #include "platform/os/lnx.h"
 
 
-#ifdef FREEBSD
+#ifdef __SUNOS__
     #define CLASS_DECL_lnx2
 #endif
 

@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "aura_freebsd/_aura_freebsd.h"
+#include "aura_sunos/_aura_sunos.h"
 #include "node_xfce/_node_xfce.h"
 #include "aura/user/_user.h"
 

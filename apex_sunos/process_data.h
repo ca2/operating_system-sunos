@@ -11,7 +11,7 @@
 
 #pragma once
 
-#ifdef FREEBSD
+#ifdef __SUNOS__
 
 template<typename T> class process_data
 {

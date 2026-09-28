@@ -5,7 +5,7 @@
 
 
 #include "node_kde/_node_kde.h"
-#include "aura_freebsd/_aura_freebsd.h"
+#include "aura_sunos/_aura_sunos.h"
 #include "aura/user/_user.h"
 
 

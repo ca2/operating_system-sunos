@@ -8,16 +8,16 @@
 #pragma once
 
 
-#include "acme_freebsd/node.h"
+#include "acme_sunos/node.h"
 #include "apex_posix/node.h"
 
 
-namespace apex_freebsd
+namespace apex_sunos
 {
 
 
-   class CLASS_DECL_APEX_FREEBSD node :
-           virtual public ::acme_freebsd::node,
+   class CLASS_DECL_APEX_SUNOS node :
+           virtual public ::acme_sunos::node,
            virtual public ::apex_posix::node
    {
    public:
@@ -113,7 +113,7 @@ namespace apex_freebsd
         void terminate_processes_by_title(const ::string & strName) override;
 
 
-        virtual bool freebsd_can_exec(const char *file);
+        virtual bool sunos_can_exec(const char *file);
 
 
         //virtual ::file::path get_module_path(HMODULE hmodule) override;
@@ -172,7 +172,7 @@ namespace apex_freebsd
    };
 
 
-} // namespace apex_freebsd
+} // namespace apex_sunos
 
 
 

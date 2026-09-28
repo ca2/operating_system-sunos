@@ -6,9 +6,9 @@
 //#endif
 
 
-//#ifdef FREEBSD
+//#ifdef __SUNOS__
 #include "apex/user/notify_icon_bridge.h"
-//namespace freebsd { class appindicator; }
+//namespace sunos { class appindicator; }
 //#endif
 
 
@@ -35,8 +35,8 @@ namespace node_gnome
       string                                            m_strId;
 //#ifdef WINDOWS_DESKTOP
 //      NOTIFYICONDATA m_nid;
-//#elif defined(FREEBSD)
-      __pointer(::freebsd::aura::appindicator)        m_pindicator;
+//#elif defined(__SUNOS__)
+      __pointer(::sunos::aura::appindicator)        m_pindicator;
 //#endif
       __pointer(::user::notify_icon_listener)      m_plistener;
       __pointer_array(::user::interaction)         m_wndptraHidden;
@@ -80,7 +80,7 @@ namespace node_gnome
 //#if defined(APPLE_IOS) || defined(WINDOWS_DESKTOP) || defined(ANDROID) || defined(_UWP)
 //      virtual void notify_icon_play(const char * action);
 //#else
-//#if defined(FREEBSD)
+//#if defined(__SUNOS__)
 //      virtual void notify_icon_play(const char * action);
 //#else
 //      virtual void notify_icon_play(const char * action) override;

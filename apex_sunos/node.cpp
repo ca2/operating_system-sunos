@@ -35,7 +35,7 @@ string empty_get_file_content_type(string)
 
 //PFN_GET_FILE_CONTENT_TYPE g_pfnGetFileContentType = &empty_get_file_content_type;
 //
-//string freebsd_get_file_content_type(string strPath)
+//string sunos_get_file_content_type(string strPath)
 //{
 //
 //   return (*g_pfnGetFileContentType)(strPath);
@@ -50,7 +50,7 @@ string empty_get_file_content_type(string)
 //}
 
 
-namespace apex_freebsd
+namespace apex_sunos
 {
 
 
@@ -65,7 +65,7 @@ namespace apex_freebsd
 //
 //
 //
-//namespace apex_freebsd
+//namespace apex_sunos
 //{
 
 
@@ -105,7 +105,7 @@ namespace apex_freebsd
 
       //auto estatus =
       //
-      ::acme_freebsd::node::initialize(pparticle);
+      ::acme_sunos::node::initialize(pparticle);
 
 //      if (!estatus)
 //      {
@@ -1003,7 +1003,7 @@ namespace apex_freebsd
         }
 
 
-        //#elif defined(FREEBSD)
+        //#elif defined(__SUNOS__)
         //            }
         //
         //#elif defined(MACos_context)
@@ -1081,7 +1081,7 @@ namespace apex_freebsd
 
             strTarget = get_context()->m_papexcontext->defer_process_path(path);
 
-            if(freebsd_can_exec(strTarget))
+            if(sunos_can_exec(strTarget))
             {
 
                 //int iPid;
@@ -1172,7 +1172,7 @@ namespace apex_freebsd
 //   void node::list_process(::file::path_array & patha, u32_array & uaPid)
 //   {
 //
-//      ::output_debug_string("freebsd::node::list_process");
+//      ::output_debug_string("sunos::node::list_process");
 //
 //      ::file::listing listing;
 //
@@ -1210,7 +1210,7 @@ namespace apex_freebsd
 //   }
 
 
-        bool node::freebsd_can_exec(const char *file)
+        bool node::sunos_can_exec(const char *file)
         {
 
             struct stat st;
@@ -1306,7 +1306,7 @@ namespace apex_freebsd
         }
 
 
-} // namespace apex_freebsd
+} // namespace apex_sunos
 
 
 

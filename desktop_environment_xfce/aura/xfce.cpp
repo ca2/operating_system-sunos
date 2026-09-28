@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "xfce_xfce.h"
-#include "aura/os/freebsd/appindicator.h"
+#include "aura/os/sunos/appindicator.h"
 
 
 namespace user
@@ -55,14 +55,14 @@ namespace node_xfce
 {
 
 
-   void appindicator_destroy(freebsd::appindicator * pindicator)
+   void appindicator_destroy(sunos::appindicator * pindicator)
    {
 
       delete pindicator;
 
    }
 
-} // namespace freebsd
+} // namespace sunos
 
 
 #endif

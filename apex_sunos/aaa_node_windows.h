@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/node/freebsd/_node_freebsd.h"
+#include "acme/node/sunos/_node_sunos.h"
 
 
 //#include "exception.h"
@@ -9,7 +9,7 @@
 string get_error_message(::u32 dwError);
 
 
-//CLASS_DECL_APEX_FREEBSD bool __initialize();
+//CLASS_DECL_APEX_SUNOS bool __initialize();
 
 
 //#include "system_dir.h"
@@ -24,7 +24,7 @@ string get_error_message(::u32 dwError);
 //#include "ip_enum.h"
 
 
-#define NODE_THREAD(pthread) (dynamic_cast < ::freebsd::thread * > (dynamic_cast < thread * >(pthread)))
+#define NODE_THREAD(pthread) (dynamic_cast < ::sunos::thread * > (dynamic_cast < thread * >(pthread)))
 
 
 //
@@ -32,10 +32,10 @@ string get_error_message(::u32 dwError);
 
 
 
-//void CLASS_DECL_APEX_FREEBSD __cdecl _ca2_purecall();
-//void CLASS_DECL_APEX_FREEBSD __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-//bool CLASS_DECL_APEX_FREEBSD __freebsd_init();
-i32 CLASS_DECL_APEX_FREEBSD __freebsd_main(::apex::system * psystem, ::create * pmaininitdata);
+//void CLASS_DECL_APEX_SUNOS __cdecl _ca2_purecall();
+//void CLASS_DECL_APEX_SUNOS __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//bool CLASS_DECL_APEX_SUNOS __sunos_init();
+i32 CLASS_DECL_APEX_SUNOS __sunos_main(::apex::system * psystem, ::create * pmaininitdata);
 
 
 
@@ -51,16 +51,16 @@ i32 CLASS_DECL_APEX_FREEBSD __freebsd_main(::apex::system * psystem, ::create * 
 
 //
 //// Sanity checks for ATOMs
-//CLASS_DECL_APEX_FREEBSD bool __is_valid_atom(ATOM nAtom);
-////CLASS_DECL_APEX_FREEBSD bool __is_valid_atom(const char * psz);
-//CLASS_DECL_APEX_FREEBSD bool __is_valid_atom(const wchar_t * psz);
+//CLASS_DECL_APEX_SUNOS bool __is_valid_atom(ATOM nAtom);
+////CLASS_DECL_APEX_SUNOS bool __is_valid_atom(const char * psz);
+//CLASS_DECL_APEX_SUNOS bool __is_valid_atom(const wchar_t * psz);
 //
 
 ///////////////////////////////////////////////////////////////////////////////
 //// locale-invariant comparison helpers till CRT gets that support
 //inline i32 __invariant_stricmp(const char *pszLeft,const char *pszRight)
 //{
-//#ifdef FREEBSD_DESKTOP
+//#ifdef SUNOS_DESKTOP
 //   return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
 //                           NORM_IGNORECASE,
 //                           pszLeft,
@@ -74,7 +74,7 @@ i32 CLASS_DECL_APEX_FREEBSD __freebsd_main(::apex::system * psystem, ::create * 
 //
 //inline i32 __invariant_stricmp(const unichar *pwszLeft,const unichar *pwszRight)
 //{
-//#ifdef FREEBSD_DESKTOP
+//#ifdef SUNOS_DESKTOP
 //   return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
 //                           NORM_IGNORECASE,
 //                           pwszLeft,
@@ -107,54 +107,54 @@ i32 CLASS_DECL_APEX_FREEBSD __freebsd_main(::apex::system * psystem, ::create * 
 
 //
 //
-//namespace freebsd
+//namespace sunos
 //{
 //
 //
 //   class thread;
 //
-//   class freebsd
+//   class sunos
 //   {
 //      i32 function();
 //   };
 //
-//   CLASS_DECL_APEX_FREEBSD HINSTANCE   load_library(const char * psz);
+//   CLASS_DECL_APEX_SUNOS HINSTANCE   load_library(const char * psz);
 //
-//   CLASS_DECL_APEX_FREEBSD bool        shell_get_special_folder_path(::windowing::window * pwindow,::file::path &str,i32 csidl,bool fCreate);
-//   CLASS_DECL_APEX_FREEBSD ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window * pwindow = nullptr);
-//   CLASS_DECL_APEX_FREEBSD ::u32       get_file_attributes(const char * pFileName);
+//   CLASS_DECL_APEX_SUNOS bool        shell_get_special_folder_path(::windowing::window * pwindow,::file::path &str,i32 csidl,bool fCreate);
+//   CLASS_DECL_APEX_SUNOS ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window * pwindow = nullptr);
+//   CLASS_DECL_APEX_SUNOS ::u32       get_file_attributes(const char * pFileName);
 //
-//   CLASS_DECL_APEX_FREEBSD ::u32       get_current_directory(string & str);
-//   CLASS_DECL_APEX_FREEBSD ::u32       get_temp_path(string & str);
-//   CLASS_DECL_APEX_FREEBSD ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
+//   CLASS_DECL_APEX_SUNOS ::u32       get_current_directory(string & str);
+//   CLASS_DECL_APEX_SUNOS ::u32       get_temp_path(string & str);
+//   CLASS_DECL_APEX_SUNOS ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
 //
-//   CLASS_DECL_APEX_FREEBSD HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
+//   CLASS_DECL_APEX_SUNOS HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
 //
-//   CLASS_DECL_APEX_FREEBSD bool        delete_file(const char * pFileName);
+//   CLASS_DECL_APEX_SUNOS bool        delete_file(const char * pFileName);
 //
-//   CLASS_DECL_APEX_FREEBSD i32     get_menu_string(HMENU hMenu,::u32 uDItem,string & str,::u32 flags);
-//   CLASS_DECL_APEX_FREEBSD void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
-//
-//
-//} // namespace freebsd
+//   CLASS_DECL_APEX_SUNOS i32     get_menu_string(HMENU hMenu,::u32 uDItem,string & str,::u32 flags);
+//   CLASS_DECL_APEX_SUNOS void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
 //
 //
+//} // namespace sunos
 //
 //
 //
-//CLASS_DECL_APEX_FREEBSD ::i32 delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
 //
 //
-//CLASS_DECL_APEX_FREEBSD HINSTANCE __get_resource_handle();
-//CLASS_DECL_APEX_FREEBSD void __set_resource_handle(HINSTANCE hInstResource);
+//CLASS_DECL_APEX_SUNOS ::i32 delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
 //
-//CLASS_DECL_APEX_FREEBSD HINSTANCE __get_resource_handle();
-//CLASS_DECL_APEX_FREEBSD HINSTANCE __find_string_resource_handle(::u32 nID);
+//
+//CLASS_DECL_APEX_SUNOS HINSTANCE __get_resource_handle();
+//CLASS_DECL_APEX_SUNOS void __set_resource_handle(HINSTANCE hInstResource);
+//
+//CLASS_DECL_APEX_SUNOS HINSTANCE __get_resource_handle();
+//CLASS_DECL_APEX_SUNOS HINSTANCE __find_string_resource_handle(::u32 nID);
 //
 
-CLASS_DECL_APEX_FREEBSD __pointer(::apex::application) __get_app();
+CLASS_DECL_APEX_SUNOS __pointer(::apex::application) __get_app();
 
-CLASS_DECL_APEX_FREEBSD i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
+CLASS_DECL_APEX_SUNOS i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
 
 
 

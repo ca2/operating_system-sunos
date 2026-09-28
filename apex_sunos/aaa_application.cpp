@@ -181,7 +181,7 @@
 //   }
 //
 //
-//} // namespace freebsd
+//} // namespace sunos
 
 
 
@@ -193,7 +193,7 @@
 //{
 //
 //
-//   ::comm::command * pmaininitdata = new ::freebsd::command;
+//   ::comm::command * pmaininitdata = new ::sunos::command;
 //
 //
 //   pmaininitdata->m_hInstance = hInstance;

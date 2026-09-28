@@ -34,14 +34,14 @@ list(APPEND library_source
 list(APPEND library_references
    acme
    acme_posix
-   acme_freebsd
+   acme_sunos
    apex
    apex_posix
-   apex_freebsd
+   apex_sunos
    aqua
    aura
    aura_posix
-   aura_freebsd
+   aura_sunos
    windowing_xcb
    node_kde
    )
@@ -61,7 +61,7 @@ if (MSVC)
    target_link_options(desktop_environment_kde PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(desktop_environment_kde PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(desktop_environment_kde PRIVATE ${library_references})
-elseif(FREEBSD OR FREEBSD)
+elseif(__SUNOS__ OR __SUNOS__)
    pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
    target_compile_options(desktop_environment_kde PRIVATE -fpermissive)
       target_compile_options(desktop_environment_kde PRIVATE ${PKGCONFIG_CFLAGS})

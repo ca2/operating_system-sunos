@@ -3,7 +3,7 @@
 #include "acme_path.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
    
@@ -68,7 +68,7 @@ namespace acme_freebsd
 //   }
 
 
-} // namespace acme_freebsd
+} // namespace acme_sunos
 
 
 

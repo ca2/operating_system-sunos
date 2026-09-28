@@ -1,5 +1,5 @@
-LIBRARY "apex_freebsd"
+LIBRARY "apex_sunos"
 
 EXPORTS
-apex_freebsd_factory
+apex_sunos_factory
 

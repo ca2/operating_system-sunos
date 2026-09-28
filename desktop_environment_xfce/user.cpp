@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "xfce_xfce.h"
-//#include "apex/os/freebsd/appindicator.h"
+//#include "apex/os/sunos/appindicator.h"
 
 
 
 //
-//namespace freebsd
+//namespace sunos
 //{
 //
 //
@@ -16,7 +16,7 @@
 //
 //   }
 //
-//} // namespace freebsd
+//} // namespace sunos
 
 namespace os
 {

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 __FACTORY_EXPORT void audio_alsa_factory()
 {

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "xfce_xfce.h"
 #include "aura/os/sunos/appindicator.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "gnome_gnome.h"
 #include "aura/os/sunos/appindicator.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 __FACTORY_EXPORT aura_sunos_factory(::factory::factory * pfactory);

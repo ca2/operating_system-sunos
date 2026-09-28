@@ -1,7 +1,7 @@
 //
 // Created by camilo on 20/01/2021. <3ThomasBS!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "clipboard_data.h"
 //#include <gtk/gtk.h>
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 namespace multimedia
@@ -94,7 +94,7 @@ namespace multimedia
          //   m_pmixerthread = (::multimedia::audio_mixer::thread *) __begin_thread(System.type_info < ::multimedia::audio_mixer::thread > ());
          //   if(m_pmixerthread == NULL)
          //      return false;
-         //   return trueÇ
+         //   return trueï¿½
          return true;
       }
 

@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "file_context.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "directory_context.h"
 
 
 namespace acme_sunos
@@ -22,7 +22,7 @@ namespace acme_sunos
    void file_context::initialize(::particle * pparticle)
    {
 
-      ::acme_darwin::file_context::initialize(pparticle);
+      ::acme_posix::file_context::initialize(pparticle);
 
    }
 
@@ -44,16 +44,16 @@ namespace acme_sunos
    }
 
 
-   ::file::path file_context::dropbox_info_network_payload()
-   {
+   //::file::path file_context::dropbox_info_network_payload()
+   //{
 
-      ::file::path pathJson;
+     // ::file::path pathJson;
 
-      pathJson = acmedirectory()->home() / ".dropbox/info.json";
+      //pathJson = directory()->home() / ".dropbox/info.json";
 
-      return pathJson;
+      //return pathJson;
 
-   }
+   //}
 
 
 } // namespace acme_sunos

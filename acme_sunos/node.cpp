@@ -1,10 +1,14 @@
+// Porting to OpenIndiana (a "SunOS") by camilo on 2026-09-28 14:00 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 #include "platform.h"
+#include "directory_system.h"
+#include "file_context.h"
+#include "file_system.h"
 #include "node.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "path_system.h"
 #include "acme/operating_system/summary.h"
 
 
-::user::enum_desktop _get_edesktop();
+//::user::enum_desktop _get_edesktop();
 
 
 namespace acme_sunos
@@ -30,7 +34,7 @@ namespace acme_sunos
 
       //auto estatus =
 
-      ::acme_darwin::node::initialize(pparticle);
+      ::acme_posix::node::initialize(pparticle);
 
 //      if (!estatus)
 //      {
@@ -570,8 +574,8 @@ namespace acme_sunos
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
-   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
-   {
+//   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
+   //{
 
 //      ::sunos::registry::key k;
 //
@@ -591,7 +595,7 @@ namespace acme_sunos
 //
 //      output_debug_string("test01");
 
-   }
+   //}
 //
 //
 //   int g_iMemoryCountersStartable = 0;
@@ -722,7 +726,7 @@ namespace acme_sunos
    }
 
 
-   void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   void node::shell_open(const ::file::path & path, const ::scoped_string & strParams, const ::file::path & pathFolder)
    {
 
       string str(path);
@@ -737,112 +741,838 @@ namespace acme_sunos
    }
 
 
-   ::pointer <::operating_system::summary > node::operating_system_summary()
-   {
+   //::pointer <::operating_system::summary > node::operating_system_summary()
+   //{
 
-      auto psummary = __create_new < ::operating_system::summary >();
+      //auto psummary = create_newø < ::operating_system::summary >();
 
 
-      //::particle::initialize(pparticle);
+      ////::particle::initialize(pparticle);
 
-      ::string strOs;
-      ::string strVer;
+      //::string strOs;
+      //::string strVer;
+      ////}
+
+      //// freedesktop.org and systemd
+      //if (file()->exists("/etc/os-release"))
+      //{
+
+         //auto set = file()->parse_standard_configuration("/etc/os-release");
+
+         //psummary->m_strDistro = set["ID"];
+         //psummary->m_strDistroBranch = set["VARIANT_ID"];
+         //psummary->m_strDesktopEnvironment = psummary->m_strDistroBranch;
+         //psummary->m_strDistroRelease = set["VERSION_ID"];
+         //psummary->m_strDistroFamily = set["ID_LIKE"];
+
+         //strsize iDot = psummary->m_strDistroRelease.find_index('.');
+
+         //if(iDot > 0)
+         //{
+
+            //psummary->m_strDistroRelease = psummary->m_strDistroRelease.left(iDot);
+
+         //}
+
+         //psummary->m_strDistro.make_lower();
+         //psummary->m_strDistroBranch.make_lower();
+         //psummary->m_strDesktopEnvironment.make_lower();
+         //psummary->m_strDistroRelease.make_lower();
+         //psummary->m_strDistroFamily.make_lower();
+
       //}
 
-      // freedesktop.org and systemd
-      if (acmefile()->exists("/etc/os-release"))
-      {
 
-         auto set = acmefile()->parse_standard_configuration("/etc/os-release");
+      //auto strLowerCaseCurrentDesktop = this->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
 
-         psummary->m_strDistro = set["ID"];
-         psummary->m_strDistroBranch = set["VARIANT_ID"];
-         psummary->m_strDesktopEnvironment = psummary->m_strDistroBranch;
-         psummary->m_strDistroRelease = set["VERSION_ID"];
-         psummary->m_strDistroFamily = set["ID_LIKE"];
+      ////# echo "lower case xdg_current_desktop is $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP"
+      //if (strLowerCaseCurrentDesktop.equals("gnome"))
+      //{
+         ////      if contains
+         ////      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+         ////      "gnome";
+         ////      then
+         ////
+         ////# echo "lower case xdg_current_desktop contains gnome"
 
-         strsize iDot = psummary->m_strDistroRelease.find_index('.');
+         //psummary->m_strDesktopEnvironment = "gnome";
 
-         if(iDot > 0)
-         {
+      //}
+      //else if (strLowerCaseCurrentDesktop.equals("kde"))
+      //{
+         ////      elif
+         ////      contains
+         ////      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+         ////      "kde";
+         ////      then
+         ////
+         ////# echo "lower case xdg_current_desktop contains gnome"
 
-            psummary->m_strDistroRelease = psummary->m_strDistroRelease.left(iDot);
+         //psummary->m_strDesktopEnvironment = "kde";
 
-         }
+      //}
+      //else if (strLowerCaseCurrentDesktop.equals("lxde"))
+      //{
+         ////      elif
+         ////      contains
+         ////      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
+         ////      "lxde";
+         ////      then
+         ////
+         ////# echo "lower case xdg_current_desktop contains lxde"
 
-         psummary->m_strDistro.make_lower();
-         psummary->m_strDistroBranch.make_lower();
-         psummary->m_strDesktopEnvironment.make_lower();
-         psummary->m_strDistroRelease.make_lower();
-         psummary->m_strDistroFamily.make_lower();
+         //psummary->m_strDesktopEnvironment = "lxde";
 
-      }
+      //}
+
+      //psummary->m_strSlashedStore=psummary->m_strDistro + "/" + psummary->m_strDistroBranch + "/" + psummary->m_strDistroRelease;
+
+      //psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedStore;
+
+      //psummary->m_strSlashedIntegration = psummary->m_strSlashedStore;
+
+      //psummary->m_strUnderscoreOperatingSystem.find_replace("/", "_");
+
+      //this->set_environment_variable("__SYSTEM_DISTRO", psummary->m_strDistro);
+      //this->set_environment_variable("__SYSTEM_DISTRO_FAMILY", psummary->m_strDistroFamily);
+      //this->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
+      //this->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
+      //this->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
+      //this->set_environment_variable("__SYSTEM_SLASHED_STORE", psummary->m_strSlashedStore);
+      //this->set_environment_variable("__SYSTEM_SLASHED_INTEGRATION", psummary->m_strSlashedIntegration);
+      //this->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);
+      //this->set_environment_variable("__SYSTEM_SUDO_INSTALL", psummary->m_strSudoInstall);
+      //this->set_environment_variable("__SYSTEM_TERMINAL", psummary->m_strTerminal);
+
+      //return psummary;
+
+   //}
 
 
-      auto strLowerCaseCurrentDesktop = this->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
+	::pointer < ::operating_system::summary > node::operating_system_summary()
+	{
+	
+	   auto psummary = create_newø < ::operating_system::summary >();
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Kernel identity
+	   // -------------------------------------------------------------------
+	   //
+	
+	   auto strUnameSystem = _uname_system();
+	
+	   auto strUnameRelease = _uname_release();
+	
+	   auto strUnameVersion =
+	      this->get_posix_shell_command_output("uname -v");
+	
+	   auto strSystemArchitecture =
+	      this->get_posix_shell_command_output("uname -m");
+	
+	
+	   strUnameSystem.trim();
+	
+	   strUnameRelease.trim();
+	
+	   strUnameVersion.trim();
+	
+	   strSystemArchitecture.trim();
+	
+	
+	   //
+	   // SunOS is the kernel/platform family.
+	   //
+	
+	   psummary->m_strSystemFamily = "sunos";
+	
+	   psummary->m_strSystemFamilyName = "SunOS";
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // First try os-release.
+	   //
+	   // Some illumos distributions may provide it, and if so it gives us
+	   // the same structured information used by the Linux implementation.
+	   // -------------------------------------------------------------------
+	   //
+	
+	   if(file_system()->exists("/etc/os-release"))
+	   {
+	
+	      auto set =
+	         file()->get_standard_configuration("/etc/os-release");
+	
+	
+	      auto strId = set["ID"].as_string();
+	
+	      strId.make_lower();
+	
+	
+	      if(strId.has_character())
+	      {
+	
+	         psummary->m_strSystem = strId;
+	
+	      }
+	
+	
+	      psummary->m_strName =
+	         set["PRETTY_NAME"];
+	
+	      psummary->m_strFriendlyName =
+	         set["PRETTY_NAME"];
+	
+	      psummary->m_strSystemName =
+	         set["NAME"];
+	
+	      psummary->m_strSystemRelease =
+	         set["VERSION_ID"];
+	
+	      psummary->m_strSystemReleaseName =
+	         set["VERSION"];
+	
+	      psummary->m_strSystemBranch =
+	         set["VARIANT_ID"];
+	
+	      psummary->m_strSystemBranchName =
+	         set["VARIANT"];
+	
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Traditional Solaris/illumos release identification.
+	   // -------------------------------------------------------------------
+	   //
+	
+	   ::string strEtcRelease;
+	
+	
+	   if(file_system()->exists("/etc/release"))
+	   {
+	
+	      strEtcRelease =
+	         file_system()->as_string("/etc/release");
+	
+	      strEtcRelease.trim();
+	
+	
+	      auto strReleaseLower = strEtcRelease.lowered();
+	
+	
+	      if(strReleaseLower.contains("openindiana"))
+	      {
+	
+	         psummary->m_strSystem = "openindiana";
+	
+	         psummary->m_strSystemName = "OpenIndiana";
+	
+	         psummary->m_strSystemFamily = "illumos";
+	
+	         psummary->m_strSystemFamilyName = "illumos";
+	
+	
+	         if(strReleaseLower.contains("hipster"))
+	         {
+	
+	            psummary->m_strSystemBranch = "hipster";
+	
+	            psummary->m_strSystemBranchName = "Hipster";
+	
+	         }
+	
+	      }
+	      else if(strReleaseLower.contains("omnios"))
+	      {
+	
+	         psummary->m_strSystem = "omnios";
+	
+	         psummary->m_strSystemName = "OmniOS";
+	
+	         psummary->m_strSystemFamily = "illumos";
+	
+	         psummary->m_strSystemFamilyName = "illumos";
+	
+	      }
+	      else if(strReleaseLower.contains("smartos"))
+	      {
+	
+	         psummary->m_strSystem = "smartos";
+	
+	         psummary->m_strSystemName = "SmartOS";
+	
+	         psummary->m_strSystemFamily = "illumos";
+	
+	         psummary->m_strSystemFamilyName = "illumos";
+	
+	      }
+	      else if(strReleaseLower.contains("tribblix"))
+	      {
+	
+	         psummary->m_strSystem = "tribblix";
+	
+	         psummary->m_strSystemName = "Tribblix";
+	
+	         psummary->m_strSystemFamily = "illumos";
+	
+	         psummary->m_strSystemFamilyName = "illumos";
+	
+	      }
+	      else if(strReleaseLower.contains("illumos"))
+	      {
+	
+	         psummary->m_strSystem = "illumos";
+	
+	         psummary->m_strSystemName = "illumos";
+	
+	         psummary->m_strSystemFamily = "illumos";
+	
+	         psummary->m_strSystemFamilyName = "illumos";
+	
+	      }
+	      else if(strReleaseLower.contains("solaris"))
+	      {
+	
+	         psummary->m_strSystem = "solaris";
+	
+	         psummary->m_strSystemName = "Oracle Solaris";
+	
+	         psummary->m_strSystemFamily = "solaris";
+	
+	         psummary->m_strSystemFamilyName = "Solaris";
+	
+	      }
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Generic SunOS fallback.
+	   // -------------------------------------------------------------------
+	   //
+	
+	   if(psummary->m_strSystem.is_empty())
+	   {
+	
+	      psummary->m_strSystem = "sunos";
+	
+	   }
+	
+	
+	   if(psummary->m_strSystemName.is_empty())
+	   {
+	
+	      psummary->m_strSystemName = strUnameSystem;
+	
+	   }
+	
+	
+	   if(psummary->m_strSystemRelease.is_empty())
+	   {
+	
+	      psummary->m_strSystemRelease = strUnameRelease;
+	
+	   }
+	
+	
+	   if(psummary->m_strSystemReleaseName.is_empty())
+	   {
+	
+	      psummary->m_strSystemReleaseName =
+	         psummary->m_strSystemRelease;
+	
+	   }
+	
+	
+	   if(psummary->m_strName.is_empty())
+	   {
+	
+	      if(strEtcRelease.has_character())
+	      {
+	
+	         psummary->m_strName = strEtcRelease;
+	
+	      }
+	      else
+	      {
+	
+	         psummary->m_strName =
+	            psummary->m_strSystemName
+	            + " "
+	            + psummary->m_strSystemReleaseName;
+	
+	      }
+	
+	   }
+	
+	
+	   if(psummary->m_strFriendlyName.is_empty())
+	   {
+	
+	      psummary->m_strFriendlyName =
+	         psummary->m_strName;
+	
+	   }
+	
+	
+	   //
+	   // uname -v is useful as the SunOS/illumos kernel build/version.
+	   //
+	
+	   if(psummary->m_strSystemBranch.is_empty())
+	   {
+	
+	      psummary->m_strSystemBranch =
+	         strUnameVersion;
+	
+	   }
+	
+	
+	   if(psummary->m_strSystemBranchName.is_empty())
+	   {
+	
+	      psummary->m_strSystemBranchName =
+	         psummary->m_strSystemBranch;
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Desktop environment / operating ambient
+	   // -------------------------------------------------------------------
+	   //
+	
+	   auto strCurrentDesktop =
+	      get_environment_variable("XDG_CURRENT_DESKTOP");
+	
+	   strCurrentDesktop.make_lower();
+	
+	
+	   if(strCurrentDesktop.contains("mate"))
+	   {
+	
+	      psummary->m_strAmbient = "mate";
+	
+	      psummary->m_strAmbientName = "MATE";
+	
+	   }
+	   else if(strCurrentDesktop.contains("gnome"))
+	   {
+	
+	      psummary->m_strAmbient = "gnome";
+	
+	      psummary->m_strAmbientName = "GNOME";
+	
+	   }
+	   else if(strCurrentDesktop.contains("kde"))
+	   {
+	
+	      psummary->m_strAmbient = "kde";
+	
+	      psummary->m_strAmbientName = "KDE";
+	
+	   }
+	   else if(strCurrentDesktop.contains("xfce"))
+	   {
+	
+	      psummary->m_strAmbient = "xfce";
+	
+	      psummary->m_strAmbientName = "Xfce";
+	
+	   }
+	   else if(strCurrentDesktop.contains("lxqt"))
+	   {
+	
+	      psummary->m_strAmbient = "lxqt";
+	
+	      psummary->m_strAmbientName = "LXQt";
+	
+	   }
+	   else if(strCurrentDesktop.contains("lxde"))
+	   {
+	
+	      psummary->m_strAmbient = "lxde";
+	
+	      psummary->m_strAmbientName = "LXDE";
+	
+	   }
+	
+	
+	   if(psummary->m_strAmbient.is_empty())
+	   {
+	
+	      auto strDesktopSession =
+	         get_environment_variable("DESKTOP_SESSION");
+	
+	      strDesktopSession.make_lower();
+	
+	
+	      if(strDesktopSession.contains("mate"))
+	      {
+	
+	         psummary->m_strAmbient = "mate";
+	
+	         psummary->m_strAmbientName = "MATE";
+	
+	      }
+	      else if(strDesktopSession.contains("gnome"))
+	      {
+	
+	         psummary->m_strAmbient = "gnome";
+	
+	         psummary->m_strAmbientName = "GNOME";
+	
+	      }
+	      else if(strDesktopSession.contains("kde"))
+	      {
+	
+	         psummary->m_strAmbient = "kde";
+	
+	         psummary->m_strAmbientName = "KDE";
+	
+	      }
+	      else if(strDesktopSession.contains("xfce"))
+	      {
+	
+	         psummary->m_strAmbient = "xfce";
+	
+	         psummary->m_strAmbientName = "Xfce";
+	
+	      }
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Package manager
+	   // -------------------------------------------------------------------
+	   //
+	   // Don't assume all illumos distributions use the same userland
+	   // package manager.
+	   // -------------------------------------------------------------------
+	   //
+	
+	   if(this->has_posix_shell_command("pkg"))
+	   {
+	
+	      //
+	      // IPS.
+	      //
+	      // OpenIndiana and several Solaris/illumos systems use this.
+	      //
+	
+	      if(this->has_posix_shell_command("pfexec"))
+	      {
+	
+	         psummary->m_strSudoInstall =
+	            "pfexec pkg install";
+	
+	      }
+	      else if(this->has_posix_shell_command("sudo"))
+	      {
+	
+	         psummary->m_strSudoInstall =
+	            "sudo pkg install";
+	
+	      }
+	      else
+	      {
+	
+	         psummary->m_strSudoInstall =
+	            "pkg install";
+	
+	      }
+	
+	
+	      //
+	      // IPS packages don't map directly to Linux .deb/.rpm files.
+	      //
+	      // Leave the extension empty unless ca2 starts producing p5p
+	      // archives explicitly.
+	      //
+	
+	      psummary->m_strStandardPackageFileExtension = "";
+	
+	   }
+	   else if(this->has_posix_shell_command("pkgin"))
+	   {
+	
+	      //
+	      // pkgsrc/pkgin is common on some illumos systems.
+	      //
+	
+	      if(this->has_posix_shell_command("sudo"))
+	      {
+	
+	         psummary->m_strSudoInstall =
+	            "sudo pkgin -y install";
+	
+	      }
+	      else
+	      {
+	
+	         psummary->m_strSudoInstall =
+	            "pkgin -y install";
+	
+	      }
+	
+	
+	      psummary->m_strStandardPackageFileExtension =
+	         "tgz";
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Architecture
+	   // -------------------------------------------------------------------
+	   //
+	
+	   psummary->m_strSystemArchitecture =
+	      strSystemArchitecture;
+	
+	
+	   //
+	   // Keep this separate from uname -m if you later need a package
+	   // architecture such as amd64 versus i86pc.
+	   //
+	
+	   if(strSystemArchitecture.case_insensitive_equals("i86pc"))
+	   {
+	
+	      psummary->m_strPackagePlatform = "amd64";
+	
+	   }
+	   else if(
+	      strSystemArchitecture.case_insensitive_equals("amd64")
+	      || strSystemArchitecture.case_insensitive_equals("x86_64"))
+	   {
+	
+	      psummary->m_strPackagePlatform = "amd64";
+	
+	   }
+	   else if(
+	      strSystemArchitecture.case_insensitive_equals("aarch64"))
+	   {
+	
+	      psummary->m_strPackagePlatform = "aarch64";
+	
+	   }
+	   else
+	   {
+	
+	      psummary->m_strPackagePlatform =
+	         strSystemArchitecture;
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Terminal
+	   // -------------------------------------------------------------------
+	   //
+	
+	   if(psummary->m_strAmbient == "mate")
+	   {
+	
+	      psummary->m_strTerminal = "mate-terminal";
+	
+	   }
+	   else if(psummary->m_strAmbient == "kde")
+	   {
+	
+	      psummary->m_strTerminal = "konsole";
+	
+	   }
+	   else if(psummary->m_strAmbient == "xfce")
+	   {
+	
+	      psummary->m_strTerminal = "xfce4-terminal";
+	
+	   }
+	   else if(this->has_posix_shell_command("gnome-terminal"))
+	   {
+	
+	      psummary->m_strTerminal = "gnome-terminal";
+	
+	   }
+	   else if(this->has_posix_shell_command("xterm"))
+	   {
+	
+	      psummary->m_strTerminal = "xterm";
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Combined system identifier
+	   // -------------------------------------------------------------------
+	   //
+	
+	   psummary->m_strSystemAmbientReleaseArchitecture =
+	      psummary->m_strSystem
+	      + "/"
+	      + psummary->m_strSystemBranch
+	      + "/"
+	      + psummary->m_strSystemRelease
+	      + "/"
+	      + psummary->m_strSystemArchitecture;
+	
+	
+	   psummary->m_strSystemAmbientReleaseArchitecture.trim("/");
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // Numeric release
+	   // -------------------------------------------------------------------
+	   //
+	
+	   ::string strRelease =
+	      psummary->m_strSystemRelease;
+	
+	
+	   ::string_array_base straRelease;
+	
+	   straRelease.explode(".", strRelease);
+	
+	
+	   if(straRelease.get_size() >= 1)
+	   {
+	
+	      psummary->m_iMajor =
+	         ::as_i32(straRelease[0]);
+	
+	
+	      if(straRelease.get_size() >= 2)
+	      {
+	
+	         psummary->m_iMinor =
+	            ::as_i32(straRelease[1]);
+	
+	      }
+	
+	   }
+	
+	
+	   //
+	   // -------------------------------------------------------------------
+	   // PATH prefix
+	   //
+	   // Same ca2 POSIX tool-directory logic as the Linux implementation.
+	   // -------------------------------------------------------------------
+	   //
+	
+	   ::string_array_base straPrefixPaths;
+	
+	
+	   ::file::path pathToolFolderBin;
+	
+	   ::file::path pathToolFolder =
+	      path_system()->tool_folder_path();
+	
+	
+	   if(pathToolFolder.has_character())
+	   {
+	
+	      pathToolFolderBin =
+	         pathToolFolder / "bin";
+	
+	   }
+	
+	
+	   ::file::path pathToolPosixBinFolder =
+	      pathToolFolder / "posix/bin";
+	
+	
+	   ::file::path pathToolBinArchFolder =
+	      pathToolFolder / "bin" / strSystemArchitecture;
+	
+	
+	   ::file::path pathHomeCodeOperatingSystemBin;
+	
+	   ::file::path pathHome =
+	      directory_system()->home();
+	
+	
+	   if(pathHome.has_character())
+	   {
+	
+	      pathHomeCodeOperatingSystemBin =
+	         pathHome / "code/operating_system/bin";
+	
+	   }
+	
+	
+	   ::string strPath =
+	      get_environment_variable("PATH");
+	
+	
+	   ::string_array_base straPath;
+	
+	   straPath.explode(":", strPath);
+	
+	
+	   if(pathToolBinArchFolder.has_character()
+	      && !straPath.contains(pathToolBinArchFolder))
+	   {
+	
+	      straPrefixPaths.add(pathToolBinArchFolder);
+	
+	   }
+	
+	
+	   if(pathToolFolderBin.has_character()
+	      && !straPath.contains(pathToolFolderBin))
+	   {
+	
+	      straPrefixPaths.add(pathToolFolderBin);
+	
+	   }
+	
+	
+	   if(pathToolPosixBinFolder.has_character()
+	      && !straPath.contains(pathToolPosixBinFolder))
+	   {
+	
+	      straPrefixPaths.add(pathToolPosixBinFolder);
+	
+	   }
+	
+	
+	   if(pathHomeCodeOperatingSystemBin.has_character()
+	      && !straPath.contains(pathHomeCodeOperatingSystemBin))
+	   {
+	
+	      straPrefixPaths.add(pathHomeCodeOperatingSystemBin);
+	
+	   }
+	
+	
+	   if(straPrefixPaths.has_element())
+	   {
+	
+	      psummary->m_strPathPrefix =
+	         straPrefixPaths.implode(":");
+	
+	   }
+	
+	
+	   return psummary;
+	
+	}
 
-      //# echo "lower case xdg_current_desktop is $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP"
-      if (strLowerCaseCurrentDesktop.equals("gnome"))
-      {
-         //      if contains
-         //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
-         //      "gnome";
-         //      then
-         //
-         //# echo "lower case xdg_current_desktop contains gnome"
-
-         psummary->m_strDesktopEnvironment = "gnome";
-
-      }
-      else if (strLowerCaseCurrentDesktop.equals("kde"))
-      {
-         //      elif
-         //      contains
-         //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
-         //      "kde";
-         //      then
-         //
-         //# echo "lower case xdg_current_desktop contains gnome"
-
-         psummary->m_strDesktopEnvironment = "kde";
-
-      }
-      else if (strLowerCaseCurrentDesktop.equals("lxde"))
-      {
-         //      elif
-         //      contains
-         //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
-         //      "lxde";
-         //      then
-         //
-         //# echo "lower case xdg_current_desktop contains lxde"
-
-         psummary->m_strDesktopEnvironment = "lxde";
-
-      }
-
-      psummary->m_strSlashedStore=psummary->m_strDistro + "/" + psummary->m_strDistroBranch + "/" + psummary->m_strDistroRelease;
-
-      psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedStore;
-
-      psummary->m_strSlashedIntegration = psummary->m_strSlashedStore;
-
-      psummary->m_strUnderscoreOperatingSystem.find_replace("/", "_");
-
-      this->set_environment_variable("__SYSTEM_DISTRO", psummary->m_strDistro);
-      this->set_environment_variable("__SYSTEM_DISTRO_FAMILY", psummary->m_strDistroFamily);
-      this->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
-      this->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
-      this->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
-      this->set_environment_variable("__SYSTEM_SLASHED_STORE", psummary->m_strSlashedStore);
-      this->set_environment_variable("__SYSTEM_SLASHED_INTEGRATION", psummary->m_strSlashedIntegration);
-      this->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);
-      this->set_environment_variable("__SYSTEM_SUDO_INSTALL", psummary->m_strSudoInstall);
-      this->set_environment_variable("__SYSTEM_TERMINAL", psummary->m_strTerminal);
-
-      return psummary;
-
-   }
 
 
 } // namespace acme_sunos

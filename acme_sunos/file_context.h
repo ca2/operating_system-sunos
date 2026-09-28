@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme_darwin/file_context.h"
+#include "acme_posix/file_context.h"
 
 
 namespace acme_sunos
@@ -9,7 +9,7 @@ namespace acme_sunos
 
 
    class CLASS_DECL_ACME_SUNOS file_context :
-      virtual public ::acme_darwin::file_context
+      virtual public ::acme_posix::file_context
    {
    public:
 
@@ -25,7 +25,7 @@ namespace acme_sunos
       void init_context() override;
 
 
-      ::file::path dropbox_info_network_payload() override;
+      //::file::path dropbox_info_network_payload() override;
 
 
    };

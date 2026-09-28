@@ -6,28 +6,27 @@ list(APPEND library_source
    _.cpp
    _.h
    _factory.cpp
-   acme_directory.cpp
-   acme_directory.h
-   acme_file.cpp
-   acme_file.h
-   acme_path.cpp
-   acme_path.h
+   #acme_directory.cpp
+   #acme_directory.h
+   #acme_file.cpp
+   #acme_file.h
    #file.cpp
    #file.h
-   dir_context.cpp
-   dir_context.h
-   dir_system.cpp
-   dir_system.h
+   directory_context.cpp
+   directory_context.h
+   directory_system.cpp
+   directory_system.h
    file_context.cpp
    file_context.h
    file_system.cpp
    file_system.h
+   path_system.cpp
+   path_system.h
    platform.cpp
    platform.h
    node.cpp
    node.h
    )
-
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source} )
@@ -36,8 +35,7 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source} )
 
 list(APPEND library_references
    acme
-   acme_posix
-   acme_darwin)
+   acme_posix)
 
 
 if (NOT ${NO_PRECOMPILED_HEADER})

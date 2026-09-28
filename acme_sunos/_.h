@@ -12,7 +12,7 @@
 
 
 
-CLASS_DECL_ACME_SUNOS ::user::enum_desktop get_edesktop();
+//CLASS_DECL_ACME_SUNOS ::user::enum_desktop get_edesktop();
 
 
 

@@ -33,7 +33,7 @@ if(USE_KQUEUE_FILE_WATCHER_DIRECTLY)
 endif()
 
 
-list(APPEND library_references acme acme_posix  acme_sunos apex apex_posix)
+list(APPEND library_references acme acme_posix acme_sunos apex apex_posix)
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
@@ -89,7 +89,6 @@ endif ()
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
 
 

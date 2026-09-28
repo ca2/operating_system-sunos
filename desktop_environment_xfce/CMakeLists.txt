@@ -17,8 +17,8 @@ list(APPEND library_source
         #display.h
         #enum_display_monitors.cpp
    _factory.cpp
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
         #gdk.cpp
         #gdk.h
         #xfce_direct.cpp
@@ -53,7 +53,7 @@ list(APPEND library_references
 
 add_library(desktop_environment_xfce SHARED ${library_source})
 
-target_precompile_headers(desktop_environment_xfce PRIVATE framework.h)
+target_precompile_headers(desktop_environment_xfce PRIVATE platform.h)
 
 set_target_properties(desktop_environment_xfce PROPERTIES LINKER_LANGUAGE CXX)
 

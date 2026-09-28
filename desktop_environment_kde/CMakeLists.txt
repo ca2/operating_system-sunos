@@ -16,8 +16,8 @@ list(APPEND library_source
    #enum_display_monitors.cpp
    _factory.cpp
 
-   #framework.cpp
-   #framework.h
+   #platform.cpp
+   #platform.h
    #gdk.cpp
    #gdk.h
    #gnome_direct.cpp
@@ -51,7 +51,7 @@ list(APPEND library_references
 
 add_library(desktop_environment_kde SHARED ${library_source} )
 
-target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
+target_precompile_headers(desktop_environment_kde PRIVATE platform.h)
 
 set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
 

@@ -17,8 +17,8 @@ list(APPEND library_source
    #display.h
    #enum_display_monitors.cpp
    _factory.cpp
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    #gdk.cpp
    #gdk.h
    #gnome_direct.cpp
@@ -55,7 +55,7 @@ list(APPEND library_references
 
 add_library(desktop_environment_gnome SHARED ${library_source})
 
-target_precompile_headers(desktop_environment_gnome PRIVATE framework.h)
+target_precompile_headers(desktop_environment_gnome PRIVATE platform.h)
 
 set_target_properties(desktop_environment_gnome PROPERTIES LINKER_LANGUAGE CXX)
 

@@ -14,9 +14,9 @@
 #define _THREAD_SAFE
 #endif // _THREAD_SAFE
 
-
+#if !defined(_LARGEFILE64_SOURCE)
 #define _LARGEFILE64_SOURCE
-
+#endif
 
 #define PARALLELIZATION_PTHREAD
 
@@ -35,10 +35,9 @@
 //#define _FREEBSD
 //#endif
 
-#ifndef FREEBSD
-#define FREEBSD
-#endif
-
+//#ifndef FREEBSD
+//#define FREEBSD
+//#endif
 
 //#ifdef RASPBIAN
 //#pragma pack(4)

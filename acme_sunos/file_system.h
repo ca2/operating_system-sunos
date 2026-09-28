@@ -4,11 +4,11 @@
 #include "acme/filesystem/filesystem/file_system.h"
 
 
-namespace acme_freebsd
+namespace acme_sunos
 {
 
 
-   class CLASS_DECL_ACME_FREEBSD file_system:
+   class CLASS_DECL_ACME_SUNOS file_system:
       virtual public ::file_system
    {
    public:

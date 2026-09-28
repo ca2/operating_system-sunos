@@ -3,13 +3,13 @@
 
 #define index freebsd_bsd_index
 
-#ifndef FREEBSD
-#define FREEBSD 1
-#endif
+//#ifndef FREEBSD
+//#define FREEBSD 1
+//#endif
 
-#ifndef _FREEBSD
-#define _FREEBSD 1
-#endif
+//#ifndef _FREEBSD
+//#define _FREEBSD 1
+//#endif
 
 //#include <strings.h>
 //#include <string.h>
@@ -336,7 +336,7 @@ typedef void * PVOID;
 #define WINBOOL int
 
 
-#ifndef FREEBSD
+#if !defined(offsetof)
 #define offsetof(type, member)  __builtin_offsetof (type, member)
 #endif
 

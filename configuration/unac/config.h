@@ -43,7 +43,7 @@
 #undef HAVE_VSNPRINTF
 
 /* Define as const if the declaration of iconv() needs const. */
-#undef ICONV_CONST
+#define ICONV_CONST const
 
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
@@ -81,5 +81,7 @@
 #define _DEBUG
 #endif // _DEBUG
 #endif
+
+
 
 

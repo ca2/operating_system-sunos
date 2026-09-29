@@ -1,3 +1,7 @@
 
 
 set(OPERATING_SYSTEM_NAME "sunos")
+set(PLATFORM_NAME "sunos")
+
+
+

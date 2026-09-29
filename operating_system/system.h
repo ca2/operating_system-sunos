@@ -342,3 +342,21 @@ typedef void * PVOID;
 
 
 
+
+
+
+#if !defined(_MSC_VER)
+
+#ifndef __noop
+#define __noop ((void)0)
+#endif
+
+#endif
+
+
+
+
+
+
+
+

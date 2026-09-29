@@ -862,8 +862,8 @@ namespace acme_sunos
 	   //
 	
 	   auto strUnameSystem = _uname_system();
-	
-	   auto strUnameRelease = _uname_release();
+	   
+	   ::string strUnameRelease = _uname_release();
 	
 	   auto strUnameVersion =
 	      this->get_posix_shell_command_output("uname -v");
@@ -965,7 +965,7 @@ namespace acme_sunos
 	      auto strReleaseLower = strEtcRelease.lowered();
 	
 	
-	      if(strReleaseLower.contains("openindiana"))
+	      if(strReleaseLower.begins_eat("openindiana"))
 	      {
 	
 	         psummary->m_strSystem = "openindiana";
@@ -975,16 +975,28 @@ namespace acme_sunos
 	         psummary->m_strSystemFamily = "illumos";
 	
 	         psummary->m_strSystemFamilyName = "illumos";
+	         
+	         strReleaseLower.trim();
 	
-	
-	         if(strReleaseLower.contains("hipster"))
+	         if(strReleaseLower.begins_eat("hipster"))
 	         {
 	
-	            psummary->m_strSystemBranch = "hipster";
-	
-	            psummary->m_strSystemBranchName = "Hipster";
+	            psummary->m_strSystemName = "OpenIndiana Hipster";
 	
 	         }
+	         
+	         strReleaseLower.trim();
+	         
+	         psummary->m_strSystemRelease = strReleaseLower.get_word(" ");
+	         
+	         //~ if(strReleaseLower.contains("hipster"))
+	         //~ {
+	
+	            //~ psummary->m_strSystemBranch = "hipster";
+	
+	            //~ psummary->m_strSystemBranchName = "Hipster";
+	
+	         //~ }
 	
 	      }
 	      else if(strReleaseLower.contains("omnios"))
@@ -1125,22 +1137,22 @@ namespace acme_sunos
 	   // uname -v is useful as the SunOS/illumos kernel build/version.
 	   //
 	
-	   if(psummary->m_strSystemBranch.is_empty())
-	   {
+	   //if(psummary->m_strSystemBranch.is_empty())
+	   //{
 	
-	      psummary->m_strSystemBranch =
-	         strUnameVersion;
+	     // psummary->m_strSystemBranch =
+	       //  strUnameVersion;
 	
-	   }
+	   //}
 	
 	
-	   if(psummary->m_strSystemBranchName.is_empty())
-	   {
+	   //~ if(psummary->m_strSystemBranchName.is_empty())
+	   //~ {
 	
-	      psummary->m_strSystemBranchName =
-	         psummary->m_strSystemBranch;
+	      //~ psummary->m_strSystemBranchName =
+	         //~ psummary->m_strSystemBranch;
 	
-	   }
+	   //~ }
 	
 	
 	   //
@@ -1248,8 +1260,24 @@ namespace acme_sunos
 	      }
 	
 	   }
+	   
+	   
+	   if(psummary->m_strSystemBranch.is_empty())
+	   {
 	
+	      psummary->m_strSystemBranch = psummary->m_strAmbient;
 	
+	   }
+
+	
+	   if(psummary->m_strSystemBranchName.is_empty())
+	   {
+	
+	      psummary->m_strSystemBranchName = psummary->m_strSystemBranch;
+	
+	   }
+	
+
 	   //
 	   // -------------------------------------------------------------------
 	   // Package manager

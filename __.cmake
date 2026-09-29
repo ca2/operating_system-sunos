@@ -1,0 +1,3 @@
+
+
+set(OPERATING_SYSTEM_NAME "sunos")

@@ -428,7 +428,7 @@ namespace apex_sunos
         }
 
 
-        void node::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
 
@@ -448,7 +448,7 @@ namespace apex_sunos
         }
 
 
-        void node::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
 
@@ -465,7 +465,7 @@ namespace apex_sunos
         }
 
 
-        void node::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
             throw not_implemented();
@@ -483,7 +483,7 @@ namespace apex_sunos
         }
 
 
-        void node::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
             throw not_implemented();
@@ -541,7 +541,7 @@ namespace apex_sunos
         }
 
 
-        void node::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
+        void node::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
         {
 
             throw not_implemented();
@@ -567,14 +567,14 @@ namespace apex_sunos
         }
 
 
-        void node::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
+        void node::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
         {
 
-            string_array straKey;
+            string_array_base straKey;
 
             //if(!
             //
-            file_extension_get_open_with_list_keys(straKey, strExtension);
+            file_extension_get_open_with_list_keys(straKey, scopedstrExtension);
 //      {
 //
 //         //return false;
@@ -588,7 +588,7 @@ namespace apex_sunos
         }
 
 
-        void node::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
+        void node::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathIconPath)
         {
 
             throw not_implemented();
@@ -606,7 +606,7 @@ namespace apex_sunos
         }
 
 
-        void node::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
+        void node::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::file::path & pathExecutable, const ::scoped_string & scopedstrParam)
         {
 
             //return false;
@@ -1016,7 +1016,7 @@ namespace apex_sunos
         //
         //#else
 
-        void node::get_default_browser(string & strId, ::file::path & path, string & strParam)
+        void node::get_default_browser(string & strId, ::file::path & pathParam, string & strParam)
         {
 
             auto str = this->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
@@ -1035,9 +1035,9 @@ namespace apex_sunos
 
                     ::file::path pathTarget;
 
-                    auto pfilelink = path()->resolve_link(pathTarget, ::file::e_link_target);
+                    auto pfilelink = path_system()->resolve_link(pathTarget, ::file::e_link_target);
 
-                    path = pfilelink->m_pathTarget;
+                    pathParam = pfilelink->m_pathTarget;
 
                 }
 
@@ -1050,10 +1050,10 @@ namespace apex_sunos
 
                 strId = "chrome";
 
-                if(path.is_empty())
+                if(pathParam.is_empty())
                 {
 
-                    path = "google-chrome";
+                    pathParam = "google-chrome";
 
                 }
 
@@ -1064,7 +1064,7 @@ namespace apex_sunos
                 strId = "firefox";
 
 
-                path = "firefox";
+                pathParam = "firefox";
 
             }
 
@@ -1078,7 +1078,7 @@ namespace apex_sunos
 
             string strTarget;
 
-            strTarget = get_context()->m_papexcontext->defer_process_path(path);
+            strTarget = m_papplication->defer_process_path(path);
 
             if(sunos_can_exec(strTarget))
             {
@@ -1093,7 +1093,7 @@ namespace apex_sunos
 
                 // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-                this->call_async(strTarget, strParams, pathFolder, e_display_default, false);
+                this->call_async(strTarget, scopedstrParams, pathFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 

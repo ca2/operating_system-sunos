@@ -11,16 +11,11 @@
 #include "service_handler.h"
 
 
-DECLARE_FACTORY(apex_darwin);
-
-
 DECLARE_FACTORY(acme_sunos);
 
 
 IMPLEMENT_FACTORY(apex_sunos)
 {
-
-   apex_darwin_factory(pfactory);
 
    acme_sunos_factory(pfactory);
 
@@ -51,7 +46,7 @@ IMPLEMENT_FACTORY(apex_sunos)
    //pfactory->add_factory_item < ::apex_sunos::file_context, ::file_context >();
    pfactory->add_factory_item < ::apex_sunos::service_handler, ::service_handler >();
 
-   pfactory->add_factory_item < ::apex_sunos::node, ::acme::node >();
+   pfactory->add_factory_item < ::apex_sunos::node, ::platform::node >();
 
    //add_factory_item < ::sunos::copydesk, ::user::cop
    // 

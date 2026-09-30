@@ -2,8 +2,8 @@
 
 
 #include "apex/_.h"
-#include "apex_posix/_.h"
-#include "acme_sunos/_.h"
+#include "operating_system-posix/apex_posix/_.h"
+#include "operating_system-sunos/acme_sunos/_.h"
 
 
 #if defined(_APEX_SUNOS_LIBRARY)
@@ -17,11 +17,11 @@ namespace apex_sunos
 {
 
 
-   class dir_context;
-   class dir_system;
+   //class dir_context;
+   //class dir_system;
 
-   class file_context;
-   class file_system;
+   //class file_context;
+   //class file_system;
 
    class node;
 

@@ -24,12 +24,43 @@ execute_process(COMMAND uname -r OUTPUT_VARIABLE __SYSTEM_RELEASE)
 set(OPERATING_SYSTEM_RELEASE ${__SYSTEM_RELEASE})
 
 
+set(__SYSTEM $ENV{__SYSTEM})
+
+
 message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
 
 
 set(__TARGET_SYSTEM_ARCHITECTURE ${__SYSTEM_ARCHITECTURE})
 
 message(STATUS "__TARGET_SYSTEM_ARCHITECTURE is ${__TARGET_SYSTEM_ARCHITECTURE}")
+
+
+message(STATUS "\$ENV{__SYSTEM} is $ENV{__SYSTEM}")
+
+
+if (${__SYSTEM} STREQUAL "openindiana")
+
+   set(OPENINDIANA TRUE)
+
+   set(SUNOS_LIKE TRUE)
+
+   #add_compile_definitions(UBUNTU_LINUX)
+
+#   add_compile_definitions(DEBIAN_LIKE_LIBUILD_GPU_BASED_APPLICATIONSNUX)
+
+   message(STATUS "UBUNTU has been set TRUE")
+
+   set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+   #set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+   set(MPG123_PKG_MODULE "libmpg123")
+
+   set(HAS_SYSTEM_UNAC FALSE)
+
+
+endif()
+
 
 include("operating_system/operating_system-posix/_desktop_ambient_1.cmake")
 include("operating_system/operating_system-posix/_desktop_ambient_2.cmake")
@@ -58,7 +89,7 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/operating_system/storage-${OPERATIN
 #include_directories(${WORKSPACE_FOLDER}/port/_)
 #include_directories(${WORKSPACE_FOLDER}/port/include)
 #include_directories(${WORKSPACE_FOLDER}/operating_system)
-if (OPERATING_SYSTEM_POSIX)
+if (${OPERATING_SYSTEM_POSIX})
    include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-posix)
    include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/include)
 endif ()

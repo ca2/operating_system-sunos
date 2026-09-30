@@ -36,17 +36,17 @@ list(APPEND library_source
 list(APPEND library_references
         acme
         acme_posix
-        acme_linux
+        acme_${PLATFORM_NAME}
    nano_graphics_cairo
         acme_windowing_gtk3
         apex
         apex_posix
-        apex_linux
+        apex_${PLATFORM_NAME}
         innate_ui_gtk3
         aqua
         aura
         aura_posix
-        aura_linux
+        aura_${PLATFORM_NAME}
         windowing_gtk3
         #windowing_x11
         #node_gdk
@@ -69,7 +69,7 @@ if(${WIN32})
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
-elseif (${LINUX})
+elseif (${LINUX} OR ${__SUNOS__})
 
     if (${USE_PKGCONFIG})
         pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 ${APPINDICATOR_PKG_MODULE})

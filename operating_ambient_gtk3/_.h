@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "aura_linux/_.h"
-#include "node_gtk3/_.h"
+#include "aura_sunos/_.h"
+#include "operating_system-posix/node_gtk3/_.h"
 
 
 #if defined(_operating_ambient_gtk3_project)

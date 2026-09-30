@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "node.h"
-#include "interaction_impl.h"
+//#include "interaction_impl.h"
 
 
 __FACTORY_IMPORT void apex_sunos_factory(::factory::factory * pfactory);
@@ -16,8 +16,8 @@ __FACTORY_EXPORT void aura_sunos_factory(::factory::factory * pfactory)
 
    aura_posix_factory(pfactory);
 
-   pfactory->add_factory_item < ::aura_sunos::node, ::acme::node >();
-   pfactory->add_factory_item < ::aura_sunos::interaction_impl, ::user::interaction_impl >();
+   pfactory->add_factory_item < ::aura_sunos::node, ::platform::node >();
+   //pfactory->add_factory_item < ::aura_sunos::interaction_impl, ::user::interaction_impl >();
 
 }
 

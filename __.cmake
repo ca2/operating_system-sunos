@@ -2,6 +2,5 @@
 
 set(OPERATING_SYSTEM_NAME "sunos")
 set(PLATFORM_NAME "sunos")
-
-
+set(OPERATING_SYSTEM_POSIX TRUE)
 

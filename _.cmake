@@ -10,6 +10,8 @@ find_package(PkgConfig REQUIRED)
 
 add_compile_definitions(__SUNOS__)
 
+set(default_write_text write_text_pango)
+
 #set(LINK_STATIC_OPTION "-static")
 set(LINK_STATIC_OPTION "")
 

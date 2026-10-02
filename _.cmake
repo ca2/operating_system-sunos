@@ -3,6 +3,7 @@
 set(OPERATING_SYSTEM_NAME "sunos")
 set(__SUNOS__ TRUE)
 set(USE_PKGCONFIG TRUE)
+set(INCLUDE_DRAW2D_CAIRO TRUE)
 
 
 find_package(PkgConfig REQUIRED)
@@ -11,11 +12,15 @@ find_package(PkgConfig REQUIRED)
 add_compile_definitions(__SUNOS__)
 
 set(default_write_text write_text_pango)
+set(default_draw2d draw2d_cairo)
+set(default_imaging imaging_freeimage)
 
 #set(LINK_STATIC_OPTION "-static")
 set(LINK_STATIC_OPTION "")
 
 #set(__SYSTEM_ARCHITECTURE "i86pc")
+
+
 
 
 

@@ -12,10 +12,14 @@
 
 
 DECLARE_FACTORY(acme_sunos);
+DECLARE_FACTORY(apex_posix);
 
 
 IMPLEMENT_FACTORY(apex_sunos)
 {
+
+   // Register the POSIX Apex services, including System V interprocess communication.
+   apex_posix_factory(pfactory);
 
    acme_sunos_factory(pfactory);
 

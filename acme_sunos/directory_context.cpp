@@ -45,18 +45,27 @@ namespace acme_sunos
    }
 
 
-   //::file::listing& directory_context::root_ones(::file::listing& listing)
-   //{
+   ::file::listing_base & directory_context::root_ones(::file::listing_base & listing)
+   {
 
-      //::file::path path;
+      auto pathHome = home();
+      if (pathHome.has_character() && pathHome != "/")
+      {
 
-      //path = "/";
+         pathHome.set_existent_folder();
+         listing.add(pathHome);
+         listing.m_straTitle.add("Home");
 
-      //listing.defer_add(path);
+      }
 
-      //return listing;
+      ::file::path pathRoot = "/";
+      pathRoot.set_existent_folder();
+      listing.add(pathRoot);
+      listing.m_straTitle.add("File System");
 
-   //}
+      return listing;
+
+   }
 
 
 } // namespace acme_sunos

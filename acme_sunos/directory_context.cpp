@@ -53,14 +53,14 @@ namespace acme_sunos
       {
 
          pathHome.set_existent_folder();
-         listing.add(pathHome);
+         listing.insert_at(listing.size(), pathHome);
          listing.m_straTitle.add("Home");
 
       }
 
       ::file::path pathRoot = "/";
       pathRoot.set_existent_folder();
-      listing.add(pathRoot);
+      listing.insert_at(listing.size(), pathRoot);
       listing.m_straTitle.add("File System");
 
       return listing;

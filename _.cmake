@@ -8,6 +8,22 @@ set(INCLUDE_DRAW2D_CAIRO TRUE)
 
 find_package(PkgConfig REQUIRED)
 
+# OpenIndiana installs FFmpeg 6 development metadata outside pkgconf's
+# default search directories. Keep explicit user search paths first.
+set(_sunos_ffmpeg_pkgconfig_dir "/usr/lib/amd64/pkgconfig/ffmpeg-6")
+if(EXISTS "${_sunos_ffmpeg_pkgconfig_dir}/libswresample.pc"
+   AND EXISTS "${_sunos_ffmpeg_pkgconfig_dir}/libavutil.pc")
+   set(_sunos_pkgconfig_path "$ENV{PKG_CONFIG_PATH}")
+   string(REPLACE ":" ";" _sunos_pkgconfig_dirs "${_sunos_pkgconfig_path}")
+   if(NOT "${_sunos_ffmpeg_pkgconfig_dir}" IN_LIST _sunos_pkgconfig_dirs)
+      if(_sunos_pkgconfig_path STREQUAL "")
+         set(ENV{PKG_CONFIG_PATH} "${_sunos_ffmpeg_pkgconfig_dir}")
+      else()
+         set(ENV{PKG_CONFIG_PATH} "${_sunos_pkgconfig_path}:${_sunos_ffmpeg_pkgconfig_dir}")
+      endif()
+   endif()
+endif()
+
 
 add_compile_definitions(__SUNOS__)
 

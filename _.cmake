@@ -31,6 +31,10 @@ set(default_write_text write_text_pango)
 set(default_draw2d draw2d_cairo)
 set(default_imaging imaging_freeimage)
 set(default_networking networking_bsd)
+set(default_audio audio_sunaudio CACHE STRING "SunOS audio backend")
+# Alternative default (both modules are built):
+# set(default_audio audio_oss CACHE STRING "SunOS audio backend" FORCE)
+set_property(CACHE default_audio PROPERTY STRINGS audio_sunaudio audio_oss)
 
 #set(LINK_STATIC_OPTION "-static")
 set(LINK_STATIC_OPTION "")

@@ -103,3 +103,10 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE _UNICODE)
 
 
 
+
+# Keep runtime factory lookup aligned with the configured audio backend.
+string(REGEX REPLACE "^audio_" "" SUNOS_AUDIO_IMPLEMENTATION "${default_audio}")
+foreach(audio_node_target acme_sunos static_acme_sunos)
+   target_compile_definitions(${audio_node_target} PRIVATE
+      CA2_SUNOS_AUDIO_IMPLEMENTATION="${SUNOS_AUDIO_IMPLEMENTATION}")
+endforeach()

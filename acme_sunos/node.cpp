@@ -6,6 +6,7 @@
 #include "node.h"
 #include "path_system.h"
 #include "acme/operating_system/summary.h"
+#include "acme/filesystem/filesystem/file_context.h"
 
 
 //::user::enum_desktop _get_edesktop();
@@ -721,7 +722,19 @@ namespace acme_sunos
    string node::audio_get_default_implementation_name()
    {
 
-      return "alsa";
+      auto implementation = file()->safe_get_string("appconfig://audio.txt");
+      implementation.trim();
+      if (implementation == "audio_sunaudio" || implementation == "sunaudio")
+         return "sunaudio";
+      if (implementation == "audio_oss" || implementation == "oss")
+         return "oss";
+      if (implementation.has_character())
+         warning() << "Unknown appconfig://audio.txt backend: " << implementation;
+#ifdef CA2_SUNOS_AUDIO_IMPLEMENTATION
+      return CA2_SUNOS_AUDIO_IMPLEMENTATION;
+#else
+      return "sunaudio";
+#endif
 
    }
 

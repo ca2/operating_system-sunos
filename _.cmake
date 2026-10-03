@@ -14,6 +14,7 @@ add_compile_definitions(__SUNOS__)
 set(default_write_text write_text_pango)
 set(default_draw2d draw2d_cairo)
 set(default_imaging imaging_freeimage)
+set(default_networking networking_bsd)
 
 #set(LINK_STATIC_OPTION "-static")
 set(LINK_STATIC_OPTION "")

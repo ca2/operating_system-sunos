@@ -1441,6 +1441,8 @@ namespace acme_sunos
 	      psummary->m_strTerminal = "mate-terminal";
          if (this->has_posix_shell_command("mate-session"))
          {
+            try
+            {
             auto strVersion = this->get_posix_shell_command_output("mate-session --version");
             strVersion.trim();
             // mate-session reports its name followed by the desktop version.
@@ -1451,6 +1453,11 @@ namespace acme_sunos
                   psummary->m_strAmbientVersion = strVersion.substr(i);
                   break;
                }
+            }
+            }
+            catch (...)
+            {
+               warning("MATE version query failed; continuing without the optional desktop version.");
             }
          }
 	

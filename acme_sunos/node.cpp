@@ -1443,7 +1443,7 @@ namespace acme_sunos
          {
             try
             {
-            auto strVersion = this->get_posix_shell_command_output("mate-session --version");
+            auto strVersion = this->get_posix_shell_command_output("LC_ALL=C mate-session --version 2>&1 || true");
             strVersion.trim();
             // mate-session reports its name followed by the desktop version.
             for (::character_count i = 0; i < strVersion.length(); ++i)

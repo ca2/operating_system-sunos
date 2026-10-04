@@ -890,6 +890,18 @@ namespace acme_sunos
 	   strUnameRelease.trim();
 	
 	   strUnameVersion.trim();
+
+         psummary->m_strKernelVersion = strUnameVersion;
+         if (strUnameVersion.case_insensitive_contains("illumos"))
+         {
+            psummary->m_strKernel = "illumos";
+            psummary->m_strKernelName = "illumos";
+         }
+         else
+         {
+            psummary->m_strKernel = "sunos";
+            psummary->m_strKernelName = strUnameSystem;
+         }
 	
 	   strSystemArchitecture.trim();
 	

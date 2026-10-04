@@ -1439,6 +1439,20 @@ namespace acme_sunos
 	   {
 	
 	      psummary->m_strTerminal = "mate-terminal";
+         if (this->has_posix_shell_command("mate-session"))
+         {
+            auto strVersion = this->get_posix_shell_command_output("mate-session --version");
+            strVersion.trim();
+            // mate-session reports its name followed by the desktop version.
+            for (::character_count i = 0; i < strVersion.length(); ++i)
+            {
+               if (strVersion[i] >= '0' && strVersion[i] <= '9')
+               {
+                  psummary->m_strAmbientVersion = strVersion.substr(i);
+                  break;
+               }
+            }
+         }
 	
 	   }
 	   else if(psummary->m_strAmbient == "kde")

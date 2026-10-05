@@ -6,6 +6,7 @@
 //#include "interprocess_communication.h"
 #include "service_handler.h"
 #include "node.h"
+#include "fen/watch.h"
 #include "apex/parallelization/service.h"
 #include "apex/parallelization/service_handler.h"
 #include "service_handler.h"
@@ -45,6 +46,8 @@ IMPLEMENT_FACTORY(apex_sunos)
    //add_factory_item < ::sunos::interaction_impl, ::user::interaction_impl >();
 
    //pfactory->add_factory_item < ::file::os_watcher, ::file::watcher >();
+   pfactory->add_factory_item<::apex_sunos::fen::watcher, ::file::watcher>();
+   pfactory->add_factory_item<::apex_sunos::fen::watch, ::file::watch>();
    //pfactory->add_factory_item < ::file::os_watch, ::file::watch >();
 
    //pfactory->add_factory_item < ::apex_sunos::file_context, ::file_context >();

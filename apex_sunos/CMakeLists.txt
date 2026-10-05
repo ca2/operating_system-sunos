@@ -22,7 +22,14 @@ list(APPEND library_source
    #os_context.h
    service_handler.cpp
    service_handler.h
+   fen/watch.cpp
+   fen/watch.h
+   fen/native.cpp
+   fen/native.h
    )
+set_source_files_properties(fen/native.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+add_executable(sunos_fen_native_test EXCLUDE_FROM_ALL fen/native_test.cpp fen/native.cpp)
+target_compile_features(sunos_fen_native_test PRIVATE cxx_std_20)
 
 
 if(USE_KQUEUE_FILE_WATCHER_DIRECTLY)

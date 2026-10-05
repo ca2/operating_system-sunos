@@ -92,7 +92,7 @@ namespace apex_sunos::fen
    }
    void watch::reconcile(bool initial)
    {
-      ::file::listing_base paths;
+      ::file::path_array_base paths;
       ::array<apex_sunos_fen_status> observed;
       apex_sunos_fen_status parentStatus{};
       if (m_parent) apex_sunos_fen_stat(m_parent->m_path.c_str(), &parentStatus);
@@ -173,11 +173,12 @@ namespace apex_sunos::fen
       if (!item->open(folder, recursive)) return nullptr;
       synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       if (m_closing) return nullptr;
-      m_watchset.set_item(item);
+      ::pointer<::file::watch> baseWatch = item;
+      m_watchset.set_item(baseWatch);
       try { item->add_listener(listener); }
       catch (...)
       {
-         m_watchset.erase(item);
+         m_watchset.erase(baseWatch);
          item->destroy();
          throw;
       }

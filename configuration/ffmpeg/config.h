@@ -20,7 +20,13 @@ extern "C"
 //#else
 //#error "non debian check"
 
-#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(59,0,0)
+#if defined(FF_API_AVIO_WRITE_NONCONST)
+#if FF_API_AVIO_WRITE_NONCONST
+#define AVIO_FILE_WRITE_TYPE uint8_t
+#else
+#define AVIO_FILE_WRITE_TYPE const uint8_t
+#endif
+#elif LIBAVFORMAT_VERSION_MAJOR >= 61
 #define AVIO_FILE_WRITE_TYPE const uint8_t
 #else
 #define AVIO_FILE_WRITE_TYPE uint8_t

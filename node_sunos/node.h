@@ -15,7 +15,7 @@ namespace node_sunos
 {
 
 
-   class CLASS_DECL_AURA_SUNOS node :
+   class CLASS_DECL_NODE_SUNOS node :
       virtual public ::aura_sunos::node
    {
    public:
@@ -25,7 +25,7 @@ namespace node_sunos
       ~node() override;
 
 
-      virtual e_status initialize(::object* pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       string get_user_name();
@@ -47,7 +47,7 @@ namespace node_sunos
 
       //virtual ::e_status get_system_time(system_time_t * psystemtime) override;
 
-      virtual ::e_status open_folder(::file::path & pathFolder) override;
+      //virtual ::e_status open_folder(::file::path & pathFolder) override;
 
       //virtual ::e_status register_dll(const ::file::path & pathDll) override;
 

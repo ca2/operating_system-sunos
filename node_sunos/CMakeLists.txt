@@ -6,6 +6,8 @@ list(APPEND library_source
     _.cpp
     _.h
     _factory.cpp
+    node.h
+    node.cpp
     )
 
 
@@ -16,6 +18,7 @@ list(APPEND library_references
    acme
    acme_sunos
    aura_posix
+   aura_sunos
    )
 
 

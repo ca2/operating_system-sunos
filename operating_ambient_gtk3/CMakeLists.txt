@@ -92,7 +92,7 @@ elseif (${LINUX} OR ${__SUNOS__})
 endif ()
 
 
-#add_dependencies(${PROJECT_NAME} node_linux)
+add_dependencies(${PROJECT_NAME} node_sunos)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

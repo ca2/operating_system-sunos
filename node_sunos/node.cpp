@@ -2,68 +2,37 @@
 #include "node.h"
 
 
-namespace aura
+namespace node_sunos
 {
 
 
-   namespace sunos
+   node::node()
+   {
+
+      //m_pnodenode = this;
+
+      m_pAuraPlatform = this;
+
+   }
+
+
+   node::~node()
    {
 
 
-      node::node()
-      {
-
-         //m_pnodenode = this;
-
-         m_pAuraPlatform = this;
-
-      }
+   }
 
 
-      node::~node()
-      {
+   void node::initialize(::particle* pparticle)
+   {
+
+      ::aura_sunos::node::initialize(pparticle);
+
+   }
 
 
-      }
-
-
-      e_status node::initialize(::object* pobject)
-      {
-
-         auto estatus = ::apex::sunos::node::initialize(pobject);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         estatus = ::aura::posix::node::initialize(pobject);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         estatus = ::aura::node::initialize(pobject);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
-
-      }
-
-
-      string node::get_user_name()
-      {
+   string node::get_user_name()
+   {
 
 //         WCHAR wsz[1024];
 //
@@ -73,9 +42,9 @@ namespace aura
 //
 //         return string(wsz);
 
-         return "";
+      return "";
 
-      }
+   }
 
 
 //      bool node::_os_calc_app_dark_mode()
@@ -300,8 +269,8 @@ namespace aura
 //      }
 
 
-      ::e_status node::open_folder(::file::path & pathFolder)
-      {
+   ::e_status node::open_folder(::file::path & pathFolder)
+   {
 
 //         wstring wstrFolder(pathFolder);
 //
@@ -353,9 +322,9 @@ namespace aura
 //
 //         }
 
-         return ::success;
+      return ::success;
 
-      }
+   }
 
 //      ::e_status node::register_dll(const ::file::path & pathDll)
 //      {
@@ -476,34 +445,11 @@ namespace aura
 //
 //      }
 
-      ::user::enum_desktop node::get_edesktop()
-      {
-
-         if (m_edesktop == ::user::e_desktop_none)
-         {
-
-            m_edesktop = calculate_edesktop();
-
-         }
-
-         return m_edesktop;
-
-      }
 
 
-      ::user::enum_desktop node::calculate_edesktop()
-      {
-
-         return ::user::e_desktop_none;
-
-      }
+} // namespace node_sunos
 
 
-
-   } // namespace sunos
-
-
-} // namespace aura
 
 
 

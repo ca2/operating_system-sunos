@@ -1,12 +1,10 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "apex_sunos/_.h"
-#include "operating_system-posix/aura_posix/_.h"
+#include "aura_sunos/_.h"
 
 
-#if defined(_NODE_SUNOS_LIBRARY)
+#if defined(_node_sunos_project)
 #define CLASS_DECL_NODE_SUNOS  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NODE_SUNOS  CLASS_DECL_IMPORT

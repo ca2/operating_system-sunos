@@ -2,7 +2,7 @@
 #include "node.h"
 
 
-__FACTORY_EXPORT void aura_sunos_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void node_sunos_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void node_gtk3_factory(::factory::factory * pfactory);
@@ -12,7 +12,7 @@ __FACTORY_EXPORT void operating_ambient_gtk3_factory(::factory::factory * pfacto
 {
 
 
-   aura_sunos_factory(pfactory);
+   node_sunos_factory(pfactory);
 
    node_gtk3_factory(pfactory);
 

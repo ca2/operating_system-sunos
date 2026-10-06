@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "aura_sunos/node.h"
+#include "node_sunos/node.h"
 #include "node_gtk3/node.h"
 
 
@@ -17,7 +17,7 @@ namespace operating_ambient_gtk3
 
 
    class CLASS_DECL_OPERATING_AMBIENT_GTK3 node :
-      virtual public ::aura_sunos::node,
+      virtual public ::node_sunos::node,
       virtual public ::node_gtk3::node
    {
    public:

@@ -16,8 +16,14 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 
 list(APPEND library_references
    acme
+   apex
+   aqua
+   aura
+   acme_posix
    acme_sunos
+   apex_posix
    aura_posix
+   apex_sunos
    aura_sunos
    )
 

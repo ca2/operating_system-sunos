@@ -51,11 +51,15 @@ string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
 execute_process(COMMAND uname -r OUTPUT_VARIABLE __SYSTEM_RELEASE)
 set(OPERATING_SYSTEM_RELEASE ${__SYSTEM_RELEASE})
 
+execute_process(COMMAND sunos_variant OUTPUT_VARIABLE __SUNOS_VARIANT)
+string(STRIP ${__SUNOS_VARIANT} __SUNOS_VARIANT)
+
 
 set(__SYSTEM $ENV{__SYSTEM})
 
 
 message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
+message(STATUS "__SUNOS_VARIANT is ${__SUNOS_VARIANT}")
 
 
 set(__TARGET_SYSTEM_ARCHITECTURE ${__SYSTEM_ARCHITECTURE})
@@ -72,11 +76,13 @@ if (${__SYSTEM} STREQUAL "openindiana")
 
    set(SUNOS_LIKE TRUE)
 
+   set(TOOL_RELEASE_NAME "openindiana")
+
    #add_compile_definitions(UBUNTU_LINUX)
 
 #   add_compile_definitions(DEBIAN_LIKE_LIBUILD_GPU_BASED_APPLICATIONSNUX)
 
-   message(STATUS "UBUNTU has been set TRUE")
+   message(STATUS "OPENINDIANA has been set TRUE")
 
    set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
 
@@ -86,8 +92,34 @@ if (${__SYSTEM} STREQUAL "openindiana")
 
    set(HAS_SYSTEM_UNAC FALSE)
 
+   add_compile_definitions(__OPENINDIANA__)
 
-endif()
+
+  elseif (${__SYSTEM} STREQUAL "solaris")
+
+      set(SOLARIS TRUE)
+
+      set(SUNOS_LIKE TRUE)
+
+      set(TOOL_RELEASE_NAME "solaris")
+
+      #add_compile_definitions(UBUNTU_LINUX)
+
+      #   add_compile_definitions(DEBIAN_LIKE_LIBUILD_GPU_BASED_APPLICATIONSNUX)
+
+      message(STATUS "SOLARIS has been set TRUE")
+
+      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+      #set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
+
+      set(MPG123_PKG_MODULE "libmpg123")
+
+      set(HAS_SYSTEM_UNAC FALSE)
+
+      add_compile_definitions(__SOLARIS__)
+
+   endif()
 
 
 include("operating_system/operating_system-posix/_desktop_ambient_1.cmake")
@@ -145,3 +177,5 @@ else ()
 endif()
 
 
+set(TOOL_BIN_APPLICATION_BUILD_HELPER_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__SUNOS_VARIANT}/${__TARGET_SYSTEM_ARCHITECTURE}/application_build_helper)
+set(TOOL_BIN_SPEAKER_EXECUTABLE $ENV{HOME}/code/operating_system/tool/bin/${__SUNOS_VARIANT}/${__TARGET_SYSTEM_ARCHITECTURE}/speaker)

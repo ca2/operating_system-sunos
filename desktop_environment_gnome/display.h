@@ -25,10 +25,10 @@
 ////   Atom m_atomaNetWmState[net_wm_state_count];
 ////   iptr m_countReference;
 ////   //array < MESSAGE >     m_messsageaInput;
-////   //::mutex *               m_pmutexInput;
+////   //::parallelization::mutex *               m_pmutexInput;
 ////
 ////   static osdisplay_dataptra *s_pdataptra;
-////   static ::mutex *s_pmutex;
+////   static ::parallelization::mutex *s_pmutex;
 //
 //   display();
 //

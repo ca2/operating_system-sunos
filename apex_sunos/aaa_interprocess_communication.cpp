@@ -28,7 +28,7 @@ namespace apex_sunos
       interprocess_communication_tx::interprocess_communication_tx()
       {
 
-         //mutex() = new ::mutex(pobject);
+         //mutex() = new ::parallelization::mutex(pobject);
 
       }
 

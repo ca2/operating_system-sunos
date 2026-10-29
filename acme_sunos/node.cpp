@@ -612,7 +612,7 @@ namespace acme_sunos
 //         if (g_iMemoryCounters)
 //         {
 //
-//            g_pmutexMemoryCounters = new ::mutex(e_create_new, false, "Global\\ca2_memory_counters");
+//            g_pmutexMemoryCounters = new ::parallelization::mutex(e_create_new, false, "Global\\ca2_memory_counters");
 //
 //         }
 //

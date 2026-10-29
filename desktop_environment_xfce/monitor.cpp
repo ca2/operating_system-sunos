@@ -2,7 +2,7 @@
 #include "platform.h"
 
 
-mutex * user_mutex();
+::parallelization::mutex * user_mutex();
 
 
 namespace node_xfce

@@ -11,7 +11,7 @@ extern ::app_core * g_pappcore;
 
 Display * x11_get_display();
 
-mutex * user_mutex();
+::parallelization::mutex * user_mutex();
 
 
 void windowing_output_debug_string(const char * pszDebugString);
@@ -42,7 +42,7 @@ namespace node_xfce
       m_atomNetWmState = None;
       m_atomLongStyleEx = 0;
       m_countReference = 1;
-//   m_pmutexInput           = new ::mutex();
+//   m_pmutexInput           = new ::parallelization::mutex();
 
    }
 

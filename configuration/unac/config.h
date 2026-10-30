@@ -42,8 +42,12 @@
 /* Define to 1 if you have the `vsnprintf' function. */
 #undef HAVE_VSNPRINTF
 
+#if defined(__SOLARIS__)
 /* Define as const if the declaration of iconv() needs const. */
+#define ICONV_CONST
+#else
 #define ICONV_CONST const
+#endif
 
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT

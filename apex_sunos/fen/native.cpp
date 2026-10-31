@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef FILE_TRUNC
+#define FILE_TRUNC 0
+#endif
+
 extern "C" int apex_sunos_fen_port()
 {
    int port = port_create();

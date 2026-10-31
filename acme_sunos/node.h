@@ -61,9 +61,13 @@ namespace acme_sunos
 
 
       string audio_get_default_implementation_name() override;
+      ::process_identifier_array processes_identifiers() override;
+      ::file::path_array_base process_identifier_modules_paths(::process_identifier processidentifier) override;
+      ::file::path process_identifier_module_path(::process_identifier processidentifier) override;
 
 
       void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
+      void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 
 
       ::pointer <::operating_system::summary > operating_system_summary() override;

@@ -7,6 +7,15 @@
 #include "path_system.h"
 #include "acme/operating_system/summary.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include <spawn.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
+extern char **environ;
 
 
 //::user::enum_desktop _get_edesktop();
@@ -739,6 +748,106 @@ namespace acme_sunos
    }
 
 
+   ::process_identifier_array node::processes_identifiers()
+   {
+      ::process_identifier_array identifiers;
+      DIR * directory = opendir("/proc");
+      if (!directory)
+      {
+         throw ::exception(error_failed);
+      }
+      while (auto entry = readdir(directory))
+      {
+         char * end = nullptr;
+         errno = 0;
+         auto pid = strtol(entry->d_name, &end, 10);
+         if (errno == 0 && end != entry->d_name && *end == '\0' && pid > 0)
+         {
+            identifiers.add((::process_identifier)pid);
+         }
+      }
+      closedir(directory);
+      return identifiers;
+   }
+
+
+   ::file::path node::process_identifier_module_path(::process_identifier processidentifier)
+   {
+      char link[128];
+      snprintf(link, sizeof(link), "/proc/%lld/path/a.out", (long long)processidentifier);
+      char path[4096];
+      auto length = readlink(link, path, sizeof(path) - 1);
+      if (length < 0 || length >= sizeof(path) - 1)
+      {
+         return {};
+      }
+      path[length] = '\0';
+      return path;
+   }
+
+
+   ::file::path_array_base node::process_identifier_modules_paths(::process_identifier processidentifier)
+   {
+      ::file::path_array_base paths;
+      char objects[128];
+      snprintf(objects, sizeof(objects), "/proc/%lld/object", (long long)processidentifier);
+      DIR * directory = opendir(objects);
+      // Processes can exit during enumeration, and other users' maps may be
+      // inaccessible. This is a best-effort check of accessible mappings.
+      if (!directory)
+      {
+         return paths;
+      }
+      while (auto entry = readdir(directory))
+      {
+         if (entry->d_name[0] == '.')
+         {
+            continue;
+         }
+         char link[512];
+         snprintf(link, sizeof(link), "/proc/%lld/path/%s", (long long)processidentifier, entry->d_name);
+         char path[4096];
+         auto length = readlink(link, path, sizeof(path) - 1);
+         if (length > 0 && length < sizeof(path) - 1)
+         {
+            path[length] = '\0';
+            paths.add_unique(::file::path(path));
+         }
+      }
+      closedir(directory);
+      return paths;
+   }
+
+
+   void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
+   {
+      // The base URL methods delegate to each other; provide the SunOS launch
+      // endpoint. Pass the URL as an argument, without shell interpretation.
+      ::string strUrl(scopedstrUrl);
+      fork([strUrl]()
+      {
+         char * argv[] = {const_cast<char *>("xdg-open"), const_cast<char *>(strUrl.c_str()), nullptr};
+         pid_t pid;
+         int result = posix_spawnp(&pid, "xdg-open", nullptr, nullptr, argv, environ);
+         if (result != 0)
+         {
+            ::information() << "SunOS URL launch failed: posix_spawnp error=" << result;
+            return;
+         }
+         int status = 0;
+         pid_t waited;
+         do
+         {
+            waited = waitpid(pid, &status, 0);
+         } while (waited < 0 && errno == EINTR);
+         if (waited < 0 || !WIFEXITED(status) || WEXITSTATUS(status) != 0)
+         {
+            ::information() << "SunOS URL launcher failed: status=" << status;
+         }
+      });
+   }
+
+
    void node::shell_open(const ::file::path & path, const ::scoped_string & strParams, const ::file::path & pathFolder)
    {
 
@@ -850,7 +959,7 @@ namespace acme_sunos
       //this->set_environment_variable("__SYSTEM_DISTRO_FAMILY", psummary->m_strDistroFamily);
       //this->set_environment_variable("__SYSTEM_DISTRO_BRANCH", psummary->m_strDistroBranch);
       //this->set_environment_variable("__SYSTEM_DISTRO_RELEASE", psummary->m_strDistroRelease);
-      //this->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", psummary->m_strDesktopEnvironment);
+      //this->set_environment_variable("__SYSTEM_AMBIENT", psummary->m_strDesktopEnvironment);
       //this->set_environment_variable("__SYSTEM_SLASHED_STORE", psummary->m_strSlashedStore);
       //this->set_environment_variable("__SYSTEM_SLASHED_INTEGRATION", psummary->m_strSlashedIntegration);
       //this->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", psummary->m_strUnderscoreOperatingSystem);

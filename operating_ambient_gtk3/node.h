@@ -39,6 +39,13 @@ namespace operating_ambient_gtk3
 
       virtual void initialize(::particle * pparticle) override;
 
+      void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override
+      {
+         // Resolve the SunOS/GTK diamond to the native asynchronous launcher.
+         ::acme_sunos::node::open_internet_link(scopedstrUrl, scopedstrProfile, scopedstrTarget);
+      }
+
+
       //virtual void os_calc_user_dark_mode() override;
 
       //virtual string os_get_user_theme() override;

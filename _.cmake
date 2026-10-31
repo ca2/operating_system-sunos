@@ -46,13 +46,20 @@ set(LINK_STATIC_OPTION "")
 
 
 execute_process(COMMAND uname -m OUTPUT_VARIABLE __SYSTEM_ARCHITECTURE)
-string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
+string(STRIP "${__SYSTEM_ARCHITECTURE}" __SYSTEM_ARCHITECTURE)
 
 execute_process(COMMAND uname -r OUTPUT_VARIABLE __SYSTEM_RELEASE)
 set(OPERATING_SYSTEM_RELEASE ${__SYSTEM_RELEASE})
 
-execute_process(COMMAND sunos_variant OUTPUT_VARIABLE __SUNOS_VARIANT)
-string(STRIP ${__SUNOS_VARIANT} __SUNOS_VARIANT)
+find_program(SUNOS_VARIANT_EXECUTABLE NAMES sunos_variant
+   HINTS "$ENV{HOME}/code/operating_system/tool/bin")
+execute_process(COMMAND "${SUNOS_VARIANT_EXECUTABLE}" OUTPUT_VARIABLE __SUNOS_VARIANT
+   RESULT_VARIABLE _sunos_variant_result ERROR_VARIABLE _sunos_variant_error
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+string(STRIP "${__SUNOS_VARIANT}" __SUNOS_VARIANT)
+if(NOT _sunos_variant_result EQUAL 0 OR NOT __SUNOS_VARIANT)
+   message(WARNING "sunos_variant did not report a variant: executable=${SUNOS_VARIANT_EXECUTABLE}; result=${_sunos_variant_result}; error=${_sunos_variant_error}. Check $ENV{HOME}/code/operating_system/tool/bin and the remote build PATH.")
+endif()
 
 
 set(__SYSTEM $ENV{__SYSTEM})
@@ -109,7 +116,8 @@ if (${__SYSTEM} STREQUAL "openindiana")
 
       message(STATUS "SOLARIS has been set TRUE")
 
-      set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+      # Solaris does not ship AppIndicator or Ayatana AppIndicator.
+      set(APPINDICATOR_PKG_MODULE "")
 
       #set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
